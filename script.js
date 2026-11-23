@@ -115,46 +115,6 @@
     })();
   }
 
-  // Videos: lazy-load + muted autoplay when in view, once the file is present
-  const clips = document.querySelectorAll(".clip");
-  clips.forEach((clip) => {
-    const video = clip.querySelector("video");
-    const src = clip.getAttribute("data-video");
-    const posterBase = clip.getAttribute("data-poster");
-    if (!video || !src) return;
-
-    const setup = async () => {
-      const poster = await firstExisting([posterBase + ".webp", posterBase + ".jpg", posterBase + ".jpeg"]);
-      if (poster) video.setAttribute("poster", poster);
-      const file = await firstExisting([src]);
-      if (!file) return;
-      clip.classList.add("is-ready");
-      const loadAndMaybePlay = () => {
-        if (!video.getAttribute("src")) {
-          video.setAttribute("src", file);
-          video.preload = "metadata";
-          video.load();
-        }
-        if (!reduceMotion) {
-          const play = video.play();
-          if (play && play.catch) play.catch(() => {});
-        }
-      };
-      if (!("IntersectionObserver" in window)) {
-        loadAndMaybePlay();
-        return;
-      }
-      const vio = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) loadAndMaybePlay();
-          else if (!video.paused) video.pause();
-        });
-      }, { threshold: 0.35 });
-      vio.observe(clip);
-    };
-    setup();
-  });
-
   // Photos + lightbox
   const shots = Array.from(document.querySelectorAll(".shot[data-photo]"));
   const lightbox = document.querySelector("#lightbox");
