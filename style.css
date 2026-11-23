@@ -726,3 +726,10 @@ code {
   .yt-card { flex: 0 0 84%; scroll-snap-align: start; }
   .yt-play { width: 54px; height: 54px; font-size: 1.25rem; }
 }
+
+/* Quote form date: dark native month picker, past days blocked via min (script.js) */
+.quote-form { color-scheme: dark; }
+.quote-form input[type="date"] { cursor: pointer; min-height: 2.75rem; }
+.quote-form input[type="date"]::-webkit-calendar-picker-indicator { cursor: pointer; opacity: 0.85; }
+.quote-form input[type="date"]:user-invalid { border-color: var(--red); }
+.field-hint { font-weight: 400; color: var(--muted); font-size: 0.75rem; }

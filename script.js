@@ -20,12 +20,41 @@
   }
 
   const form = document.querySelector("#quote-form");
+
+  // Event date: today or later only. min = today's local date keeps past days greyed out in the picker.
+  const dateInput = form ? form.querySelector('input[name="date"]') : null;
+  const todayLocal = () => {
+    const d = new Date();
+    return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+  };
+  const checkDate = () => {
+    if (!dateInput) return true;
+    const min = todayLocal();
+    dateInput.min = min;
+    const past = dateInput.value && dateInput.value < min;
+    dateInput.setCustomValidity(past ? "Pick today or a later date. Past dates can’t be booked." : "");
+    return !past;
+  };
+  if (dateInput) {
+    checkDate();
+    dateInput.addEventListener("focus", checkDate);
+    dateInput.addEventListener("input", checkDate);
+    dateInput.addEventListener("change", checkDate);
+    dateInput.addEventListener("click", () => {
+      checkDate();
+      if (typeof dateInput.showPicker === "function") {
+        try { dateInput.showPicker(); } catch (err) { /* not allowed here; native control still works */ }
+      }
+    });
+  }
+
   if (form) {
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
       const note = form.querySelector(".form-note");
       const btn = form.querySelector('button[type="submit"]');
       const show = (msg) => { if (note) { note.hidden = false; note.textContent = msg; } };
+      if (!checkDate()) show(dateInput.validationMessage);
       if (!form.checkValidity()) { form.reportValidity(); return; }
       btn.disabled = true;
       show("Sending…");
