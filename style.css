@@ -730,3 +730,54 @@ code {
 .quote-form input[type="date"]:user-invalid { border-color: var(--red); }
 .field-hint { font-weight: 400; color: var(--muted); font-size: 0.75rem; }
 @media (max-width: 799px) { .site-footer .brand-name { display: block; } }
+
+/* Red textures — each red section gets its own subtle, stage-lighting feel (pure CSS) */
+:root {
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.32'/%3E%3C/svg%3E");
+  --red-deep: #a8101d;
+  --red-darker: #7e0b15;
+}
+/* Ticker: fine diagonal pinstripes, darker toward the bottom edge */
+.ticker.is-red {
+  background:
+    repeating-linear-gradient(135deg, rgba(0, 0, 0, 0.13) 0 2px, transparent 2px 10px),
+    linear-gradient(180deg, var(--red) 0%, #c6162a 100%);
+}
+/* Services: stage spotlight from above, darker vignette at the sides, film grain */
+.services.is-red {
+  background:
+    var(--grain),
+    radial-gradient(ellipse 60% 45% at 50% -8%, rgba(255, 255, 255, 0.08), transparent 70%),
+    radial-gradient(ellipse 120% 90% at 50% 40%, transparent 55%, rgba(60, 0, 6, 0.45) 100%),
+    linear-gradient(180deg, var(--red) 0%, var(--red-deep) 100%);
+}
+/* Call Krish: deep red-to-crimson diagonal with two soft light sweeps, very slow drift */
+.cta-band.is-red {
+  background:
+    linear-gradient(105deg, transparent 30%, rgba(255, 255, 255, 0.07) 38%, transparent 46%),
+    linear-gradient(75deg, transparent 58%, rgba(255, 255, 255, 0.05) 64%, transparent 70%),
+    linear-gradient(120deg, var(--red-darker) 0%, var(--red) 35%, var(--red-deep) 65%, var(--red-darker) 100%);
+  background-size: 200% 100%, 200% 100%, 100% 100%;
+  animation: ctaSweep 22s ease-in-out infinite alternate;
+}
+@keyframes ctaSweep {
+  from { background-position: 0% 0, 100% 0, 0 0; }
+  to { background-position: 100% 0, 0% 0, 0 0; }
+}
+/* Reviews: halftone dot screen that fades in toward the bottom */
+.reviews.is-red {
+  background:
+    linear-gradient(180deg, var(--red) 0%, rgba(225, 29, 46, 0.6) 35%, rgba(225, 29, 46, 0) 75%),
+    radial-gradient(circle, rgba(0, 0, 0, 0.2) 1.3px, transparent 1.8px) 0 0 / 14px 14px,
+    linear-gradient(180deg, var(--red) 0%, #cf1729 100%);
+}
+/* Booking: deep diagonal falloff into crimson, warm glow behind the heading, grain */
+.book.is-red {
+  background:
+    var(--grain),
+    radial-gradient(ellipse 50% 60% at 15% 20%, rgba(255, 70, 80, 0.1), transparent 70%),
+    linear-gradient(150deg, var(--red) 0%, var(--red-deep) 55%, var(--red-darker) 100%);
+}
+@media (prefers-reduced-motion: reduce) {
+  .cta-band.is-red { animation: none; }
+}
