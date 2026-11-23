@@ -302,6 +302,7 @@ h3 { font-size: var(--display-sm); }
   overflow: hidden;
   white-space: nowrap;
   background: var(--bg-2);
+  border-block: 1px solid var(--line);
 }
 .ticker-track {
   display: flex;
@@ -320,11 +321,34 @@ h3 { font-size: var(--display-sm); }
 @keyframes tick { to { transform: translateX(-50%); } }
 
 /* Sections */
-.intro, .services, .packages, .lighting-section, .gallery, .team, .reviews, .for-djs, .book {
+/* One rhythm for every section: same padding, backgrounds alternate bg / bg-2 in page order:
+   hero, ticker (bg-2), vibe (bg), services (bg-2), lighting (bg + glow), call (red band),
+   gallery (bg), team (bg-2), reviews (bg), for DJs (bg-2), book (bg), footer (bg-2) */
+.intro, .services, .lighting-section, .gallery, .team, .reviews, .for-djs, .book {
   padding: 6rem 0;
 }
-.intro { background: var(--bg-2); }
+@media (max-width: 799px) {
+  .intro, .services, .lighting-section, .gallery, .team, .reviews, .for-djs, .book { padding: 4.5rem 0; }
+}
+.intro, .gallery, .reviews, .book { background: var(--bg); }
+.services, .team, .for-djs { background: var(--bg-2); --card: #1a1a1a; }
 .intro-manifesto { max-width: 40rem; }
+h2 + .section-lead, h2 + .accent { margin-top: 0.4rem; }
+
+/* Content blocks under a section heading all start at the same distance */
+.yt-grid, .feature-row, .gallery-grid, .team-grid, .review-grid { margin-top: 2.5rem; }
+
+/* Call Krish: standalone red band */
+.cta-band {
+  background: var(--red);
+  padding: 5.5rem 0;
+  text-align: center;
+}
+.cta-band h2 { color: #fff; margin: 0 0 1.75rem; }
+.cta-band p { margin: 0; }
+.cta-band .btn-primary { background: #fff; color: #0a0a0a; border-color: #fff; font-size: 0.9375rem; padding: 0.95rem 1.6rem; }
+.cta-band .btn-primary:hover { background: #0a0a0a; color: #fff; border-color: #0a0a0a; }
+@media (max-width: 799px) { .cta-band { padding: 4rem 0; } }
 .intro-manifesto h2 { margin-bottom: 1.25rem; color: var(--ink); }
 
 .lighting-grid, .book-grid {
@@ -338,7 +362,7 @@ h3 { font-size: var(--display-sm); }
 .feature-row {
   display: grid;
   gap: 1.25rem;
-  margin: 2rem 0 2.5rem;
+  margin-bottom: 1.25rem;
 }
 @media (min-width: 800px) { .feature-row { grid-template-columns: repeat(3, 1fr); } }
 
@@ -399,7 +423,6 @@ h3 { font-size: var(--display-sm); }
 .team-grid {
   display: grid;
   gap: 1.25rem;
-  margin-top: 1.75rem;
 }
 @media (min-width: 800px) { .team-grid { grid-template-columns: repeat(3, 1fr); } }
 .team-ph {
@@ -420,17 +443,27 @@ h3 { font-size: var(--display-sm); }
 .review-grid {
   display: grid;
   gap: 1.25rem;
-  margin-top: 1.75rem;
 }
 @media (min-width: 800px) { .review-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) {
+  .review-grid { grid-template-columns: repeat(6, 1fr); }
+  .review-card { grid-column: span 2; }
+  .review-card:nth-child(-n+2) { grid-column: span 3; }
+}
+@media (min-width: 800px) and (max-width: 999px) { .review-card:last-child { grid-column: 1 / -1; } }
+.review-card { display: flex; flex-direction: column; }
+.review-card footer { margin-top: auto; }
 .review-card { margin: 0; }
 .review-card p { color: var(--ink); }
 .stars { color: var(--red); margin-bottom: 0.6rem; letter-spacing: 0.12em; }
 .review-card footer { color: var(--muted); }
-.reviews-cta { margin: 2rem 0 0; }
+.reviews-cta { margin: 2.5rem 0 0; }
 
 .for-djs { background: var(--bg-2); }
-.for-djs-inner { max-width: 40rem; }
+.for-djs-inner { display: grid; gap: 1.5rem; }
+.for-djs-inner h2 { margin-bottom: 0; }
+.for-djs-inner .btn { margin-top: 0.75rem; }
+@media (min-width: 800px) { .for-djs-inner { grid-template-columns: 1fr 1fr; align-items: end; } }
 
 .book { background: var(--bg); }
 .quote-form {
@@ -468,13 +501,21 @@ h3 { font-size: var(--display-sm); }
 .text-link:hover { text-decoration: underline; }
 
 .site-footer {
-  padding: 2.5rem 0 2rem;
+  padding: 3rem 0 2.5rem;
   color: var(--muted);
   font-size: var(--label);
+  background: var(--bg-2);
+  border-top: 1px solid var(--line);
 }
 .footer-inner { display: grid; gap: 1.25rem; }
+.footer-inner p { margin: 0; }
+@media (min-width: 800px) {
+  .footer-inner { grid-template-columns: 1fr auto; align-items: center; }
+  .footer-inner .legal { grid-column: 1 / -1; padding-top: 1.25rem; border-top: 1px solid var(--line); }
+}
 .footer-inner .brand-name { color: #fff; margin: 0 0 0.3rem; }
 .socials { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 0.9rem 1.25rem; }
+.socials li { margin: 0; }
 .socials a { text-decoration: none; }
 .socials a:hover { color: var(--red); }
 .legal { margin: 0; }
@@ -532,7 +573,6 @@ code {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0.6rem;
-  margin-top: 1.75rem;
 }
 @media (min-width: 800px) {
   .gallery-grid {
@@ -635,14 +675,15 @@ code {
 .yt-grid { display: grid; gap: 1rem; grid-template-columns: 1fr; margin-top: 2rem; }
 @media (min-width: 700px) { .yt-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 1000px) { .yt-grid { grid-template-columns: repeat(3, 1fr); } }
-.yt-card { position: relative; display: block; width: 100%; aspect-ratio: 16/9; padding: 0; border: 0; border-radius: 12px; overflow: hidden; background: #000; cursor: pointer; color: #fff; text-align: left; }
+.yt-card { position: relative; display: block; width: 100%; aspect-ratio: 16/9; padding: 0; border: 0; border-radius: 2px; overflow: hidden; background: #000; cursor: pointer; color: #fff; text-align: left; }
 .yt-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .3s; }
 .yt-card:hover img { transform: scale(1.04); }
-.yt-play { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 64px; height: 64px; border-radius: 50%; background: rgba(220,20,40,.9); display: grid; place-items: center; font-size: 1.5rem; }
+.yt-card:hover .yt-play { transform: translate(-50%,-50%) scale(1.08); }
+.yt-card:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+.yt-play { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 64px; height: 64px; border-radius: 50%; background: var(--red); transition: transform .3s var(--ease); display: grid; place-items: center; font-size: 1.5rem; }
 .yt-title { position: absolute; left: 0; right: 0; bottom: 0; padding: .75rem 1rem; background: linear-gradient(transparent, rgba(0,0,0,.85)); font-weight: 600; font-size: .95rem; }
 .yt-card iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-.yt-more { margin-top: 1.5rem; text-align: center; }
-.intro-actions.yt-more { justify-content: center; }
+.intro-actions.yt-more { margin-top: 2rem; }
 
 /* Hero line animation: lines rise in one after another, "We do iconic." pops and glows */
 .hero-copy .tl { display: block; opacity: 0; animation: lineIn 0.8s var(--ease) forwards; }
