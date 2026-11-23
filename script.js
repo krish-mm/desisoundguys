@@ -21,13 +21,28 @@
 
   const form = document.querySelector("#quote-form");
   if (form) {
-    form.addEventListener("submit", (event) => {
+    form.addEventListener("submit", async (event) => {
       event.preventDefault();
       const note = form.querySelector(".form-note");
-      if (note) {
-        note.hidden = false;
-        note.textContent =
-          "This is a mockup, so the form does not send yet. Add a booking email to go live, or reach out on Instagram @desisoundguys.";
+      const btn = form.querySelector('button[type="submit"]');
+      const show = (msg) => { if (note) { note.hidden = false; note.textContent = msg; } };
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+      btn.disabled = true;
+      show("Sending…");
+      try {
+        const res = await fetch("https://formsubmit.co/ajax/desisoundguys@gmail.com", {
+          method: "POST",
+          headers: { Accept: "application/json" },
+          body: new FormData(form),
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok || String(data.success) === "false") throw new Error(data.message || "failed");
+        form.reset();
+        show("Got it. We’ll be in touch soon.");
+      } catch (err) {
+        show("Couldn’t send right now. Email desisoundguys@gmail.com or call (206) 388-8696.");
+      } finally {
+        btn.disabled = false;
       }
     });
   }
