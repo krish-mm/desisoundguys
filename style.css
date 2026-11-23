@@ -377,8 +377,19 @@ h2 + .section-lead, h2 + .accent { margin-top: 0.4rem; }
     radial-gradient(60% 80% at 100% 0%, rgba(225, 29, 46, 0.16), transparent 55%),
     var(--bg);
 }
-.lighting-points { list-style: none; padding: 0; display: grid; gap: 1.25rem; }
-.lighting-points p { color: var(--muted); margin: 0; }
+.lighting-grid h2 { margin-bottom: 0; }
+@media (min-width: 800px) { .lighting-grid { align-items: end; } .lighting-grid .bar-body { margin-bottom: 0.4rem; } }
+
+/* The gear, explained */
+.gear { margin-top: 3.5rem; }
+.gear-title { font-size: var(--display-sm); margin: 0 0 1.5rem; }
+.gear-grid { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+@media (min-width: 600px) { .gear-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1000px) { .gear-grid { grid-template-columns: repeat(4, 1fr); } }
+.gear-card { background: var(--card); padding: 1.35rem 1.3rem 1.2rem; border-top: 2px solid var(--red); }
+.gear-card h4 { font-family: var(--display); font-weight: 400; font-size: 1.5rem; letter-spacing: var(--track-display); line-height: 1; margin: 0 0 0.55rem; }
+.gear-card p { color: var(--muted); font-size: 0.9375rem; line-height: 1.5; margin: 0; }
+.gear-also { color: var(--muted); margin: 1.5rem 0 0; }
 
 .shot {
   position: relative;
