@@ -2,7 +2,6 @@
    Colors: black, white, one red. */
 :root {
   --bg: #0a0a0a;
-  --bg-2: #111;
   --card: #161616;
   --red: #e11d2e;
   --ink: #ffffff;
@@ -292,8 +291,6 @@ h3 { font-size: var(--display-sm); }
 .ticker {
   overflow: hidden;
   white-space: nowrap;
-  background: var(--bg-2);
-  border-block: 1px solid var(--line);
 }
 .ticker-track {
   display: flex;
@@ -306,23 +303,44 @@ h3 { font-size: var(--display-sm); }
 }
 .ticker-track span::before {
   content: "·";
-  color: var(--red);
+  color: #0a0a0a;
   margin-right: 2.5rem;
 }
 @keyframes tick { to { transform: translateX(-50%); } }
 
 /* Sections */
-/* One rhythm for every section: same padding, backgrounds alternate bg / bg-2 in page order:
-   hero, ticker (bg-2), vibe (bg), services (bg-2), lighting (bg + glow), call (red band),
-   gallery (bg), team (bg-2), reviews (bg), for DJs (bg-2), book (bg), footer (bg-2) */
+/* One rhythm for every section: same padding, backgrounds alternate black / red in page order:
+   hero (dark), ticker (red strip), vibe (black), services (red), lighting + gear (black), call (red),
+   gallery (black), reviews (red), for DJs (black), book (red), footer (black) */
 .intro, .services, .lighting-section, .gallery, .reviews, .for-djs, .book {
   padding: 6rem 0;
 }
 @media (max-width: 799px) {
   .intro, .services, .lighting-section, .gallery, .reviews, .for-djs, .book { padding: 4.5rem 0; }
 }
-.intro, .gallery, .reviews, .book { background: var(--bg); }
-.services, .for-djs { background: var(--bg-2); --card: #1a1a1a; }
+.intro, .gallery, .for-djs { background: var(--bg); }
+
+/* Red sections: white text, dark translucent cards, white buttons and accents */
+.is-red {
+  background: var(--red);
+  color: #fff;
+  --muted: #fff;
+  --card: rgba(10, 10, 10, 0.4);
+  --line: rgba(255, 255, 255, 0.35);
+}
+.is-red .feature-card, .is-red .service-group, .is-red .review-card, .is-red .quote-form { --muted: rgba(255, 255, 255, 0.82); }
+.is-red .btn-primary { background: #fff; color: #0a0a0a; border-color: #fff; }
+.is-red .btn-primary:hover { background: #0a0a0a; color: #fff; border-color: #0a0a0a; }
+.is-red .btn-outline:hover { color: var(--red); }
+.is-red .feature-card h3, .is-red .stars { color: #fff; }
+.is-red .text-link { color: #fff; text-decoration: underline; text-underline-offset: 0.2em; }
+.is-red .text-link:hover { text-decoration-thickness: 2px; }
+.is-red ::selection { background: #0a0a0a; color: #fff; }
+.is-red .quote-form input:focus,
+.is-red .quote-form select:focus,
+.is-red .quote-form textarea:focus { outline-color: #fff; border-color: #fff; }
+.is-red .quote-form input[type="date"]:user-invalid { border-color: #fff; outline: 2px dashed #fff; }
+
 .intro-manifesto { max-width: 40rem; }
 h2 + .section-lead, h2 + .accent { margin-top: 0.4rem; }
 
@@ -331,7 +349,6 @@ h2 + .section-lead, h2 + .accent { margin-top: 0.4rem; }
 
 /* Call Krish: standalone red band */
 .cta-band {
-  background: var(--red);
   padding: 5.5rem 0;
   text-align: center;
 }
@@ -441,13 +458,11 @@ h2 + .section-lead, h2 + .accent { margin-top: 0.4rem; }
 .review-card footer { color: var(--muted); }
 .reviews-cta { margin: 2.5rem 0 0; }
 
-.for-djs { background: var(--bg-2); }
 .for-djs-inner { display: grid; gap: 1.5rem; }
 .for-djs-inner h2 { margin-bottom: 0; }
 .for-djs-inner .btn { margin-top: 0.75rem; }
 @media (min-width: 800px) { .for-djs-inner { grid-template-columns: 1fr 1fr; align-items: end; } }
 
-.book { background: var(--bg); }
 .quote-form {
   display: grid;
   gap: 0.85rem;
@@ -486,8 +501,7 @@ h2 + .section-lead, h2 + .accent { margin-top: 0.4rem; }
   padding: 3rem 0 2.5rem;
   color: var(--muted);
   font-size: var(--label);
-  background: var(--bg-2);
-  border-top: 1px solid var(--line);
+  background: var(--bg);
 }
 .footer-inner { display: grid; gap: 1.25rem; }
 .footer-inner p { margin: 0; }
@@ -715,3 +729,4 @@ code {
 .quote-form input[type="date"]::-webkit-calendar-picker-indicator { cursor: pointer; opacity: 0.85; }
 .quote-form input[type="date"]:user-invalid { border-color: var(--red); }
 .field-hint { font-weight: 400; color: var(--muted); font-size: 0.75rem; }
+@media (max-width: 799px) { .site-footer .brand-name { display: block; } }
