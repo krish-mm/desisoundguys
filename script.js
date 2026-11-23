@@ -210,3 +210,17 @@
     });
   }
 })();
+
+// YouTube: load the player only when a card is clicked
+document.querySelectorAll('.yt-card').forEach(function (card) {
+  card.addEventListener('click', function () {
+    if (card.querySelector('iframe')) return;
+    var f = document.createElement('iframe');
+    f.src = 'https://www.youtube-nocookie.com/embed/' + card.dataset.yt + '?autoplay=1&rel=0';
+    f.title = card.getAttribute('aria-label');
+    f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+    f.allowFullscreen = true;
+    card.innerHTML = '';
+    card.appendChild(f);
+  });
+});
