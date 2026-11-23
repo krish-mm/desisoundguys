@@ -90,15 +90,6 @@ h3 { font-size: var(--display-sm); }
 }
 .need-sm { margin-left: 0.4rem; vertical-align: middle; }
 
-/* One label style, used sparingly */
-.section-kicker {
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: var(--track-label);
-  font-size: var(--label);
-  font-weight: 600;
-  margin: 0 0 0.85rem;
-}
 
 .section-lead,
 .intro-note {
@@ -324,19 +315,19 @@ h3 { font-size: var(--display-sm); }
 /* One rhythm for every section: same padding, backgrounds alternate bg / bg-2 in page order:
    hero, ticker (bg-2), vibe (bg), services (bg-2), lighting (bg + glow), call (red band),
    gallery (bg), team (bg-2), reviews (bg), for DJs (bg-2), book (bg), footer (bg-2) */
-.intro, .services, .lighting-section, .gallery, .team, .reviews, .for-djs, .book {
+.intro, .services, .lighting-section, .gallery, .reviews, .for-djs, .book {
   padding: 6rem 0;
 }
 @media (max-width: 799px) {
-  .intro, .services, .lighting-section, .gallery, .team, .reviews, .for-djs, .book { padding: 4.5rem 0; }
+  .intro, .services, .lighting-section, .gallery, .reviews, .for-djs, .book { padding: 4.5rem 0; }
 }
 .intro, .gallery, .reviews, .book { background: var(--bg); }
-.services, .team, .for-djs { background: var(--bg-2); --card: #1a1a1a; }
+.services, .for-djs { background: var(--bg-2); --card: #1a1a1a; }
 .intro-manifesto { max-width: 40rem; }
 h2 + .section-lead, h2 + .accent { margin-top: 0.4rem; }
 
 /* Content blocks under a section heading all start at the same distance */
-.yt-grid, .feature-row, .gallery-grid, .team-grid, .review-grid { margin-top: 2.5rem; }
+.yt-grid, .feature-row, .gallery-grid, .review-grid { margin-top: 2.5rem; }
 
 /* Call Krish: standalone red band */
 .cta-band {
@@ -366,7 +357,7 @@ h2 + .section-lead, h2 + .accent { margin-top: 0.4rem; }
 }
 @media (min-width: 800px) { .feature-row { grid-template-columns: repeat(3, 1fr); } }
 
-.feature-card, .review-card, .team-card, .service-group {
+.feature-card, .review-card, .service-group {
   background: var(--card);
   padding: 1.6rem 1.4rem;
 }
@@ -419,26 +410,6 @@ h2 + .section-lead, h2 + .accent { margin-top: 0.4rem; }
   font-weight: 600;
 }
 
-.team { background: var(--bg-2); }
-.team-grid {
-  display: grid;
-  gap: 1.25rem;
-}
-@media (min-width: 800px) { .team-grid { grid-template-columns: repeat(3, 1fr); } }
-.team-ph {
-  aspect-ratio: 1;
-  display: grid;
-  place-items: center;
-  text-align: center;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  color: var(--muted);
-  font-size: var(--label);
-  background:
-    linear-gradient(180deg, rgba(225, 29, 46, 0.18), transparent 60%),
-    repeating-linear-gradient(-45deg, #1a1a1a, #1a1a1a 10px, #141414 10px, #141414 20px);
-}
-.team-card p { color: var(--muted); margin-bottom: 0.35rem; }
 
 .review-grid {
   display: grid;
