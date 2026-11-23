@@ -399,7 +399,8 @@ h2 + .section-lead, h2 + .accent { margin-top: 0.4rem; }
 
 /* The gear, explained */
 .gear { margin-top: 3.5rem; }
-.gear-title { font-size: var(--display-sm); margin: 0 0 1.5rem; }
+.gear-title { font-size: var(--display-sm); margin: 0 0 0.85rem; }
+.gear-intro { margin: 0 0 1.75rem; }
 .gear-grid { display: grid; gap: 1rem; grid-template-columns: 1fr; }
 @media (min-width: 600px) { .gear-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 1000px) { .gear-grid { grid-template-columns: repeat(4, 1fr); } }
