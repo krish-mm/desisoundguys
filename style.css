@@ -1171,3 +1171,18 @@ code {
 .yt-close:hover { background: #fff; color: #0a0a0a; }
 /* YT 4: preview loop sits over the thumbnail, under the gradient/title */
 .yt-preview { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+/* YT 5: category chips */
+.yt-filters { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2rem; }
+.yt-filters + .yt-grid { margin-top: 1.25rem; }
+.yt-chip { font-family: var(--sans); font-size: var(--label); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #fff; background: transparent; border: 1px solid rgba(255, 255, 255, 0.6); border-radius: 999px; padding: 0.45rem 1rem; cursor: pointer; transition: background-color 0.25s var(--ease), color 0.25s var(--ease), border-color 0.25s var(--ease); }
+.yt-chip:hover { border-color: #fff; }
+.yt-chip[aria-pressed="true"] { background: #fff; color: var(--red); border-color: #fff; }
+.yt-chip:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+.yt-card[hidden], .yt-chip[hidden] { display: none; }
+@media (min-width: 1000px) {
+  .yt-grid.is-filtered .yt-card.yt-feature:not(.yt-solo) { grid-column: auto; grid-row: auto; }
+  .yt-grid.is-filtered .yt-card.yt-feature:not(.yt-solo) .yt-title { font-size: clamp(1.15rem, 1.6vw, 1.45rem); padding: 0.9rem 1.1rem 1rem; }
+  .yt-grid.is-filtered .yt-card.yt-feature:not(.yt-solo) .yt-play { width: 64px; height: 64px; }
+  .yt-card.yt-solo { grid-column: span 2; grid-row: span 2; }
+}
+@media (prefers-reduced-motion: reduce) { .yt-chip { transition: none; } }

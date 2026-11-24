@@ -503,3 +503,29 @@ document.querySelectorAll(".svc-grid, .fx-grid, .steps, .review-grid, .reviews-g
   }, { threshold: 0.5 });
   cards.forEach(function (c) { io.observe(c); });
 })();
+
+// YT 5: category filters (from the video titles). Chips with no videos hide.
+(function () {
+  var bar = document.querySelector('.yt-filters');
+  var grid = document.querySelector('.yt-grid');
+  if (!bar || !grid) return;
+  var cards = [].slice.call(grid.querySelectorAll('.yt-card'));
+  var chips = [].slice.call(bar.querySelectorAll('.yt-chip'));
+  chips.forEach(function (chip) {
+    var f = chip.dataset.filter;
+    if (f !== 'all' && !cards.some(function (c) { return c.dataset.cat === f; })) chip.hidden = true;
+    chip.addEventListener('click', function () {
+      chips.forEach(function (c) { c.setAttribute('aria-pressed', String(c === chip)); });
+      var shown = 0;
+      cards.forEach(function (c) {
+        var on = f === 'all' || c.dataset.cat === f;
+        c.hidden = !on; c.classList.remove('yt-solo');
+        if (on) shown++;
+      });
+      if (shown === 1) cards.filter(function (c) { return !c.hidden; })[0].classList.add('yt-solo');
+      grid.classList.toggle('is-filtered', f !== 'all');
+      grid.scrollLeft = 0;
+      grid.dispatchEvent(new CustomEvent('yt:filter'));
+    });
+  });
+})();
