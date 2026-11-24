@@ -16,3 +16,8 @@ All ten slots are in the Gallery grid. Click a photo to open the lightbox.
 - JPEG or WebP
 - About 1600px on the long edge
 - SRGB, reasonably compressed so the page stays fast
+
+## Extra photos (not shown yet)
+
+- `cold-sparks-outdoor-1.jpg`: used for the Cold sparks effect tile and panel.
+- `cold-sparks-outdoor-2.jpg`: second outdoor cold sparks shot, kept for later.

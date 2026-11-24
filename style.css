@@ -1012,3 +1012,10 @@ code {
   opacity: 0; animation: lineIn 0.8s var(--ease) 1.8s forwards;
 }
 @media (prefers-reduced-motion: reduce) { .hero-strip .strip-what { opacity: 1; animation: none; } }
+
+/* Copy pass: effects subheading, "Cue the gasp." tile tag, footer sign-off */
+.gear-sub { margin: -0.4rem 0 1rem; font-family: var(--display); font-size: clamp(1.5rem, 3vw, 2.1rem); line-height: 1; letter-spacing: var(--track-display); color: var(--red); }
+.fx-ph { gap: 0.5rem; align-content: center; }
+.fx-tag { font-family: var(--display); font-size: 1.35rem; letter-spacing: var(--track-display); line-height: 1; color: #fff; }
+.sign-off { color: var(--muted); }
+.book-title { text-wrap: balance; }
