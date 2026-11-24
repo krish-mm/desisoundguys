@@ -1,4 +1,5 @@
 (function () {
+  document.documentElement.classList.add("js");
   const toggle = document.querySelector(".nav-toggle");
   const nav = document.querySelector("#site-nav");
   const year = document.querySelector("#year");
@@ -216,7 +217,7 @@
 })();
 
 // YouTube: load the player only when a card is clicked
-document.querySelectorAll('.yt-card').forEach(function (card) {
+function bindYt(card) {
   card.addEventListener('click', function () {
     if (card.querySelector('iframe')) return;
     var f = document.createElement('iframe');
@@ -226,4 +227,71 @@ document.querySelectorAll('.yt-card').forEach(function (card) {
     card.innerHTML = '';
     card.appendChild(f);
   });
-});
+}
+document.querySelectorAll('.yt-card').forEach(bindYt);
+
+// Effects explained: one detail dialog at a time, built from the matching panel
+(function () {
+  var dialog = document.getElementById('fx-dialog');
+  if (!dialog || typeof dialog.showModal !== 'function') {
+    document.documentElement.classList.remove('js');
+    return;
+  }
+  var body = dialog.querySelector('.fx-dialog-body');
+  var closeBtn = dialog.querySelector('.fx-close');
+  var lastBtn = null;
+  function open(btn) {
+    var panel = document.getElementById('fx-' + btn.dataset.fx);
+    if (!panel) return;
+    if (lastBtn && lastBtn !== btn) lastBtn.setAttribute('aria-expanded', 'false');
+    var copy = panel.cloneNode(true);
+    copy.removeAttribute('id');
+    var h = copy.querySelector('h4');
+    if (h) h.id = 'fx-dialog-title';
+    var img = copy.querySelector('img');
+    if (img) img.loading = 'eager';
+    var slot = copy.querySelector('.fx-video');
+    var yt = (panel.dataset.yt || '').trim();
+    var name = h ? h.textContent : 'Effect';
+    if (slot) {
+      if (yt) {
+        var card = document.createElement('button');
+        card.type = 'button';
+        card.className = 'yt-card';
+        card.dataset.yt = yt;
+        card.setAttribute('aria-label', 'Play: ' + name);
+        card.innerHTML = '<img src="https://i.ytimg.com/vi/' + encodeURIComponent(yt) + '/hqdefault.jpg" alt="" width="480" height="360"><span class="yt-play" aria-hidden="true">▶</span>';
+        slot.appendChild(card);
+        bindYt(card);
+      } else {
+        slot.innerHTML = '<div class="fx-video-ph"><span class="need">[Add: video]</span></div>';
+      }
+    }
+    body.innerHTML = '';
+    body.appendChild(copy);
+    lastBtn = btn;
+    btn.setAttribute('aria-expanded', 'true');
+    if (!dialog.open) dialog.showModal();
+    closeBtn.focus();
+  }
+  document.querySelectorAll('.fx-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () { open(btn); });
+  });
+  function cleanup() {
+    body.innerHTML = '';
+    if (lastBtn) {
+      lastBtn.setAttribute('aria-expanded', 'false');
+      lastBtn.focus();
+      lastBtn = null;
+    }
+  }
+  function closeFx() {
+    if (dialog.open) dialog.close();
+    cleanup();
+  }
+  closeBtn.addEventListener('click', closeFx);
+  dialog.addEventListener('click', function (e) { if (e.target === dialog) closeFx(); });
+  dialog.addEventListener('cancel', function (e) { e.preventDefault(); closeFx(); });
+  dialog.addEventListener('keydown', function (e) { if (e.key === 'Escape') { e.preventDefault(); closeFx(); } });
+  dialog.addEventListener('close', cleanup);
+})();

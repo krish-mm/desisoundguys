@@ -10,6 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@1,500;1,600&family=Outfit:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <script>document.documentElement.classList.add("js")</script>
 </head>
 <body>
   <a class="skip" href="#home">Skip to content</a>
@@ -192,54 +193,165 @@
       <div class="wrap gear reveal">
         <h3 class="gear-title">Effects explained.</h3>
         <p class="bar-body gear-intro">We set it up before you walk in.<br>We trigger it right when the moment hits.<br>Sparks on the drop, fog on the floor.<br>Your night, our show.</p>
-        <div class="gear-grid">
-          <article class="gear-card">
-            <h4>Uplights</h4>
-            <p>LED lights set on the floor that wash walls, drapes and columns in your colors. Paired with LED tubes, they set the look of the room from dinner through the last song.</p>
+        <p class="fx-hint">Tap an effect to see what it is, why you'd want it, and when to skip it.</p>
+        <ul class="fx-grid" role="list">
+          <li><button class="fx-btn" type="button" data-fx="uplights" aria-haspopup="dialog" aria-expanded="false" aria-controls="fx-dialog"><img class="fx-thumb" src="media/effects/uplights.jpg" alt="" width="800" height="600" loading="lazy" decoding="async"><span class="fx-name">Uplights</span></button></li>
+          <li><button class="fx-btn" type="button" data-fx="moving-lights" aria-haspopup="dialog" aria-expanded="false" aria-controls="fx-dialog"><img class="fx-thumb" src="media/effects/moving-lights.jpg" alt="" width="800" height="600" loading="lazy" decoding="async"><span class="fx-name">Moving lights</span></button></li>
+          <li><button class="fx-btn" type="button" data-fx="lasers" aria-haspopup="dialog" aria-expanded="false" aria-controls="fx-dialog"><img class="fx-thumb" src="media/effects/lasers.jpg" alt="" width="800" height="600" loading="lazy" decoding="async"><span class="fx-name">Lasers</span></button></li>
+          <li><button class="fx-btn" type="button" data-fx="cold-sparks" aria-haspopup="dialog" aria-expanded="false" aria-controls="fx-dialog"><img class="fx-thumb" src="media/effects/cold-sparks.jpg" alt="" width="800" height="600" loading="lazy" decoding="async"><span class="fx-name">Cold sparks</span></button></li>
+          <li><button class="fx-btn" type="button" data-fx="spark-guns" aria-haspopup="dialog" aria-expanded="false" aria-controls="fx-dialog"><span class="fx-thumb fx-ph"><span class="need">[Add: photo]</span></span><span class="fx-name">Spark guns</span></button></li>
+          <li><button class="fx-btn" type="button" data-fx="co2-guns" aria-haspopup="dialog" aria-expanded="false" aria-controls="fx-dialog"><span class="fx-thumb fx-ph"><span class="need">[Add: photo]</span></span><span class="fx-name">CO2 guns</span></button></li>
+          <li><button class="fx-btn" type="button" data-fx="co2-jets" aria-haspopup="dialog" aria-expanded="false" aria-controls="fx-dialog"><img class="fx-thumb" src="media/effects/co2-jets.jpg" alt="" width="800" height="600" loading="lazy" decoding="async"><span class="fx-name">CO2 jets</span></button></li>
+          <li><button class="fx-btn" type="button" data-fx="led-dance-floor" aria-haspopup="dialog" aria-expanded="false" aria-controls="fx-dialog"><img class="fx-thumb" src="media/effects/led-dance-floor.jpg" alt="" width="800" height="600" loading="lazy" decoding="async"><span class="fx-name">LED dance floor</span></button></li>
+          <li><button class="fx-btn" type="button" data-fx="led-video-wall" aria-haspopup="dialog" aria-expanded="false" aria-controls="fx-dialog"><img class="fx-thumb" src="media/effects/led-video-wall.jpg" alt="" width="800" height="600" loading="lazy" decoding="async"><span class="fx-name">LED video wall</span></button></li>
+          <li><button class="fx-btn" type="button" data-fx="vinyl-wraps" aria-haspopup="dialog" aria-expanded="false" aria-controls="fx-dialog"><span class="fx-thumb fx-ph"><span class="need">[Add: photo]</span></span><span class="fx-name">Vinyl wraps</span></button></li>
+          <li><button class="fx-btn" type="button" data-fx="low-fog" aria-haspopup="dialog" aria-expanded="false" aria-controls="fx-dialog"><span class="fx-thumb fx-ph"><span class="need">[Add: photo]</span></span><span class="fx-name">Low-lying fog</span></button></li>
+          <li><button class="fx-btn" type="button" data-fx="indoor-snow" aria-haspopup="dialog" aria-expanded="false" aria-controls="fx-dialog"><img class="fx-thumb" src="media/effects/indoor-snow.jpg" alt="" width="800" height="600" loading="lazy" decoding="async"><span class="fx-name">Indoor snow</span></button></li>
+        </ul>
+        <div class="fx-panels">
+          <article class="fx-panel" id="fx-uplights" data-yt="">
+            <img class="fx-photo" src="media/effects/uplights.jpg" alt="Event hall with colored lights washing the walls, columns and stage" width="800" height="600" loading="lazy" decoding="async">
+            <div class="fx-body">
+              <h4>Uplights</h4>
+              <dl class="fx-facts">
+                <dt>What it is</dt><dd>LED lights set on the floor that wash walls, drapes and columns in your colors.</dd>
+                <dt>Why choose it</dt><dd>It is the easiest way to change how the whole room looks, from dinner through the last song.</dd>
+                <dt>When to skip it</dt><dd>If your venue already has built-in lighting you love, or it is an outdoor daytime event where the color won&#x27;t show.</dd>
+              </dl>
+              <div class="fx-video"></div>
+            </div>
           </article>
-          <article class="gear-card">
-            <h4>Moving lights</h4>
-            <p>Intelligent fixtures that pan, tilt and change color, throwing beams, spots and gobo patterns across the room. Cued over DMX so they move with the music.</p>
+          <article class="fx-panel" id="fx-moving-lights" data-yt="">
+            <img class="fx-photo" src="media/effects/moving-lights.jpg" alt="Bright beams from moving-head lights fanning out over a crowd" width="800" height="600" loading="lazy" decoding="async">
+            <div class="fx-body">
+              <h4>Moving lights</h4>
+              <dl class="fx-facts">
+                <dt>What it is</dt><dd>Intelligent fixtures that pan, tilt and change color, throwing beams and gobo patterns, cued over DMX.</dd>
+                <dt>Why choose it</dt><dd>They make the dance floor feel like a concert and move with the music.</dd>
+                <dt>When to skip it</dt><dd>For a quiet ceremony or a sit-down dinner where you want the room calm and still.</dd>
+              </dl>
+              <div class="fx-video"></div>
+            </div>
           </article>
-          <article class="gear-card">
-            <h4>Lasers</h4>
-            <p>Thin, sharp beams of colored light that sweep and fan out over the crowd. They turn a dance floor into a club.</p>
+          <article class="fx-panel" id="fx-lasers" data-yt="">
+            <img class="fx-photo" src="media/effects/lasers.jpg" alt="Laser beams fanning out over a nightclub crowd" width="800" height="600" loading="lazy" decoding="async">
+            <div class="fx-body">
+              <h4>Lasers</h4>
+              <dl class="fx-facts">
+                <dt>What it is</dt><dd>Thin, sharp beams of colored light that sweep and fan out over the crowd.</dd>
+                <dt>Why choose it</dt><dd>Nothing turns a dance floor into a club faster.</dd>
+                <dt>When to skip it</dt><dd>If you want an elegant dinner feel or the crowd skews older, and check with your venue first since some don&#x27;t allow them.</dd>
+              </dl>
+              <div class="fx-video"></div>
+            </div>
           </article>
-          <article class="gear-card">
-            <h4>Cold sparks</h4>
-            <p>Machines that shoot up fountains of sparks, a fireworks look without real fireworks. Made for entrances, first dances and big moments.</p>
+          <article class="fx-panel" id="fx-cold-sparks" data-yt="">
+            <img class="fx-photo" src="media/effects/cold-sparks.jpg" alt="Couple&#x27;s first dance framed by fountains of sparks and fog" width="800" height="600" loading="lazy" decoding="async">
+            <div class="fx-body">
+              <h4>Cold sparks</h4>
+              <dl class="fx-facts">
+                <dt>What it is</dt><dd>Machines that shoot up fountains of sparks for a fireworks look without real fireworks.</dd>
+                <dt>Why choose it</dt><dd>They frame the big moments: grand entrances, first dances and the last song.</dd>
+                <dt>When to skip it</dt><dd>Outdoors, since they depend on wind and weather, and check with your venue on ceiling height and whether they&#x27;re allowed.</dd>
+              </dl>
+              <div class="fx-video"></div>
+            </div>
           </article>
-          <article class="gear-card">
-            <h4>Spark guns</h4>
-            <p>A handheld spark effect, aimed and fired by hand. A burst of sparkle right where the energy is, on the drop.</p>
+          <article class="fx-panel" id="fx-spark-guns" data-yt="">
+            <span class="fx-photo fx-ph"><span class="need">[Add: photo]</span></span>
+            <div class="fx-body">
+              <h4>Spark guns</h4>
+              <dl class="fx-facts">
+                <dt>What it is</dt><dd>A handheld spark effect, aimed and fired by hand right on the drop.</dd>
+                <dt>Why choose it</dt><dd>It puts a burst of sparkle right where the energy is, in the middle of the crowd.</dd>
+                <dt>When to skip it</dt><dd>Outdoors, where wind and weather call the shots, or at a low-key event, and check with your venue first.</dd>
+              </dl>
+              <div class="fx-video"></div>
+            </div>
           </article>
-          <article class="gear-card">
-            <h4>CO2 guns</h4>
-            <p>Handheld blasters that shoot a cold white plume of CO2 over the crowd. Fired by hand on the drop to lift the room.</p>
+          <article class="fx-panel" id="fx-co2-guns" data-yt="">
+            <span class="fx-photo fx-ph"><span class="need">[Add: photo]</span></span>
+            <div class="fx-body">
+              <h4>CO2 guns</h4>
+              <dl class="fx-facts">
+                <dt>What it is</dt><dd>Handheld blasters that shoot a cold white plume of CO2 over the crowd.</dd>
+                <dt>Why choose it</dt><dd>Fired on the drop, they give the dance floor a jolt of hype.</dd>
+                <dt>When to skip it</dt><dd>If you want an elegant, classy vibe.</dd>
+              </dl>
+              <div class="fx-video"></div>
+            </div>
           </article>
-          <article class="gear-card">
-            <h4>CO2 jets</h4>
-            <p>Cannons that blast tall columns of white CO2 fog straight up, timed to the music for drops, entrances and big moments.</p>
+          <article class="fx-panel" id="fx-co2-jets" data-yt="">
+            <img class="fx-photo" src="media/effects/co2-jets.jpg" alt="White CO2 plumes blasting over a club dance floor" width="800" height="600" loading="lazy" decoding="async">
+            <div class="fx-body">
+              <h4>CO2 jets</h4>
+              <dl class="fx-facts">
+                <dt>What it is</dt><dd>Cannons that blast tall columns of white CO2 fog straight up, timed to the music.</dd>
+                <dt>Why choose it</dt><dd>They make the loud moments louder: drops, entrances and takeovers.</dd>
+                <dt>When to skip it</dt><dd>For a soft, romantic or formal evening, or a small room where the blast would feel like too much.</dd>
+              </dl>
+              <div class="fx-video"></div>
+            </div>
           </article>
-          <article class="gear-card">
-            <h4>LED dance floor</h4>
-            <p>A dance floor built from LED panels that light up in colors and patterns, so the floor itself is part of the show.</p>
+          <article class="fx-panel" id="fx-led-dance-floor" data-yt="">
+            <img class="fx-photo" src="media/effects/led-dance-floor.jpg" alt="People dancing on a light-up LED dance floor" width="800" height="600" loading="lazy" decoding="async">
+            <div class="fx-body">
+              <h4>LED dance floor</h4>
+              <dl class="fx-facts">
+                <dt>What it is</dt><dd>A dance floor built from LED panels that light up in colors and patterns.</dd>
+                <dt>Why choose it</dt><dd>The floor itself becomes part of the show and pulls people onto it.</dd>
+                <dt>When to skip it</dt><dd>If you love your venue&#x27;s floor as it is or want a classic, understated look.</dd>
+              </dl>
+              <div class="fx-video"></div>
+            </div>
           </article>
-          <article class="gear-card">
-            <h4>LED video wall</h4>
-            <p>A big screen made of LED panels for visuals, names, monograms, photos or live video behind the DJ or stage.</p>
+          <article class="fx-panel" id="fx-led-video-wall" data-yt="">
+            <img class="fx-photo" src="media/effects/led-video-wall.jpg" alt="Large LED video wall above a stage with lights" width="800" height="600" loading="lazy" decoding="async">
+            <div class="fx-body">
+              <h4>LED video wall</h4>
+              <dl class="fx-facts">
+                <dt>What it is</dt><dd>A big screen made of LED panels for visuals, names, monograms, photos or live video.</dd>
+                <dt>Why choose it</dt><dd>It gives the stage a backdrop that changes with every part of the night.</dd>
+                <dt>When to skip it</dt><dd>For a small, intimate room where a big screen would take over the space.</dd>
+              </dl>
+              <div class="fx-video"></div>
+            </div>
           </article>
-          <article class="gear-card">
-            <h4>Vinyl wraps</h4>
-            <p>Custom printed vinyl laid over the dance floor with your names, monogram or design, so the floor matches the event.</p>
+          <article class="fx-panel" id="fx-vinyl-wraps" data-yt="">
+            <span class="fx-photo fx-ph"><span class="need">[Add: photo]</span></span>
+            <div class="fx-body">
+              <h4>Vinyl wraps</h4>
+              <dl class="fx-facts">
+                <dt>What it is</dt><dd>Custom printed vinyl laid over the dance floor with your names, monogram or design.</dd>
+                <dt>Why choose it</dt><dd>It makes the floor match your event and shows up great in photos from above.</dd>
+                <dt>When to skip it</dt><dd>If you are already on an LED dance floor or the floor won&#x27;t be seen much.</dd>
+              </dl>
+              <div class="fx-video"></div>
+            </div>
           </article>
-          <article class="gear-card">
-            <h4>Low-lying fog</h4>
-            <p>Thick fog that stays low and hugs the floor for a dancing-on-the-clouds look.</p>
+          <article class="fx-panel" id="fx-low-fog" data-yt="">
+            <span class="fx-photo fx-ph"><span class="need">[Add: photo]</span></span>
+            <div class="fx-body">
+              <h4>Low-lying fog</h4>
+              <dl class="fx-facts">
+                <dt>What it is</dt><dd>Thick fog that stays low and hugs the floor.</dd>
+                <dt>Why choose it</dt><dd>It creates the dancing-on-the-clouds look for a first dance.</dd>
+                <dt>When to skip it</dt><dd>For a graduation or a high-energy party where nobody is doing a slow dance.</dd>
+              </dl>
+              <div class="fx-video"></div>
+            </div>
           </article>
-          <article class="gear-card">
-            <h4>Indoor snow</h4>
-            <p>Snow-like flakes that drift down over the room for a winter-wonderland moment, indoors.</p>
+          <article class="fx-panel" id="fx-indoor-snow" data-yt="">
+            <img class="fx-photo" src="media/effects/indoor-snow.jpg" alt="Snow-like flakes falling over an audience indoors" width="800" height="600" loading="lazy" decoding="async">
+            <div class="fx-body">
+              <h4>Indoor snow</h4>
+              <dl class="fx-facts">
+                <dt>What it is</dt><dd>Snow-like flakes that drift down over the room.</dd>
+                <dt>Why choose it</dt><dd>It gives you a winter-wonderland moment indoors, any time of year.</dd>
+                <dt>When to skip it</dt><dd>If you are going for a summer garden vibe.</dd>
+              </dl>
+              <div class="fx-video"></div>
+            </div>
           </article>
         </div>
         <p class="gear-also">Also: custom monograms and name washes, and a custom DJ booth.</p>
@@ -431,7 +543,7 @@
         <li><a href="https://soundcloud.com/desisoundguys" target="_blank" rel="noopener noreferrer">SoundCloud</a></li>
         <li><a href="https://www.pinterest.com/desisoundguys/" target="_blank" rel="noopener noreferrer">Pinterest</a></li>
       </ul>
-      <p class="legal">© <span id="year"></span> Desi Sound Guys.</p>
+      <p class="legal">© <span id="year"></span> Desi Sound Guys. · <a href="credits.html">Photo credits</a></p>
     </div>
   </footer>
 
@@ -444,6 +556,11 @@
     </figure>
     <button type="button" class="lightbox-next" aria-label="Next photo">Next</button>
   </div>
+
+  <dialog id="fx-dialog" class="fx-dialog" aria-labelledby="fx-dialog-title">
+    <button type="button" class="fx-close" aria-label="Close">Close</button>
+    <div class="fx-dialog-body"></div>
+  </dialog>
   <script src="script.js"></script>
 </body>
 </html>
