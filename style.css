@@ -1028,3 +1028,6 @@ code {
 @keyframes ticker { to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) { .ticker-track { animation: none; } }
 .book-title { text-wrap: balance; }
+
+/* LED dance floor tile video: same box as the photo tiles */
+.fx-clip { object-fit: cover; background: #111; }

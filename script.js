@@ -193,6 +193,23 @@
     })();
   }
 
+  // LED dance floor tile: real clip, loaded and played only when visible and motion is OK; poster otherwise
+  const fxVideo = document.querySelector("video.fx-clip[data-src]");
+  if (fxVideo) {
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let inView = false;
+    const sync = () => {
+      if (reduce.matches || !inView) { fxVideo.pause(); return; }
+      if (!fxVideo.getAttribute("src")) fxVideo.src = fxVideo.dataset.src;
+      const p = fxVideo.play();
+      if (p && p.catch) p.catch(function () {});
+    };
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver((entries) => { inView = entries[0].isIntersecting; sync(); }, { rootMargin: "200px" }).observe(fxVideo);
+    } else { inView = true; sync(); }
+    if (reduce.addEventListener) reduce.addEventListener("change", sync);
+  }
+
   // Photos + lightbox
   // Gallery stays hidden (and unprobed) until real photos are added and the section is un-hidden
   const shots = Array.from(document.querySelectorAll("#gallery:not([hidden]) .shot[data-photo]"));
@@ -227,7 +244,7 @@
       lbImg.alt = "";
     }
     if (lbCap) {
-      lbCap.textContent = name ? name.textContent : (cap ? cap.textContent.trim() : "photo goes here");
+      lbCap.textContent = name ? name.textContent : (cap ? cap.textContent.trim() : "");
     }
     lightbox.hidden = false;
     document.body.style.overflow = "hidden";
