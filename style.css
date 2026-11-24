@@ -288,14 +288,16 @@ h3 { font-size: var(--display-sm); }
 }
 
 /* Sections */
+/* Mockup order: hero (dark), vibe (red), services (dark), call (red), effects (dark), reviews (red),
+   team (dark), FAQ (red), book (dark), for DJs (red), footer (dark). Gallery hidden until photos exist. */
 /* One rhythm for every section: same padding, backgrounds alternate dark / red in page order:
    hero (dark), vibe (red), services (black), call (red), effects (black), gallery (red),
    reviews (black), for DJs (red), book (black), footer (red) */
-.intro, .services, .lighting-section, .gallery, .reviews, .for-djs, .book {
+.intro, .services, .lighting-section, .gallery, .reviews, .for-djs, .book, .team, .faq {
   padding: 6rem 0;
 }
 @media (max-width: 799px) {
-  .intro, .services, .lighting-section, .gallery, .reviews, .for-djs, .book { padding: 4.5rem 0; }
+  .intro, .services, .lighting-section, .gallery, .reviews, .for-djs, .book, .team, .faq { padding: 4.5rem 0; }
 }
 .services, .reviews, .book { background: var(--bg); }
 
@@ -866,3 +868,106 @@ code {
 .svc-card ul, .svc-card li { border-color: var(--line); }
 .svc-card li::before { background: var(--red); }
 .periodt { background: var(--red); }
+
+/* ===== Review-fixes mockup ===== */
+[hidden] { display: none !important; }
+.is-red .need { border-color: #fff; background: rgba(10, 10, 10, 0.28); }
+
+/* Hero: what we are, in one line */
+.hero-what {
+  font-family: var(--sans); font-weight: 600; font-size: var(--label); letter-spacing: var(--track-label);
+  text-transform: uppercase; color: #fff; margin: 0.6rem 0 0; display: inline-block;
+  border-left: 3px solid var(--red); padding: 0.15rem 0 0.15rem 0.7rem;
+}
+
+/* Hero trust row */
+.trust-row {
+  list-style: none; padding: 1.25rem 0 0; margin: 2.5rem 0 0; display: flex; flex-wrap: wrap; gap: 1rem 2.25rem;
+  border-top: 1px solid var(--line); max-width: 60rem;
+}
+.trust-row li { margin: 0; display: grid; gap: 0.15rem; }
+.trust-row strong { font-family: var(--display); font-weight: 400; font-size: 1.9rem; line-height: 1; letter-spacing: var(--track-display); color: #fff; }
+.trust-row strong .need { font-family: var(--sans); letter-spacing: 0; vertical-align: middle; }
+.trust-row li > span { color: var(--muted); font-size: var(--label); }
+.trust-row li:first-child strong { color: var(--red); }
+
+/* Services: genres + price signal */
+.svc-genres { font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 1.15rem; margin: -0.4rem 0 1rem; color: #fff; }
+.price-signal {
+  margin-top: 2.5rem; padding: 1.6rem 1.4rem; background: var(--card); border-left: 3px solid var(--red);
+  display: grid; gap: 0.4rem 2rem; align-items: center;
+}
+.price-signal p { margin: 0; color: var(--muted); }
+.price-signal .price-main { font-family: var(--display); font-size: clamp(1.9rem, 3vw, 2.4rem); line-height: 1; color: #fff; letter-spacing: var(--track-display); }
+.price-signal .price-main .need { font-family: var(--sans); letter-spacing: 0; vertical-align: middle; }
+.price-signal .btn { justify-self: start; margin-top: 0.6rem; }
+@media (min-width: 900px) {
+  .price-signal { grid-template-columns: 1fr auto; }
+  .price-signal .btn { grid-column: 2; grid-row: 1 / span 2; margin: 0; }
+}
+
+/* Reviews on red: grain + diagonal */
+.reviews.is-red {
+  background:
+    var(--grain),
+    linear-gradient(160deg, var(--red-deep) 0%, var(--red) 45%, var(--red-deep) 100%);
+}
+
+/* Meet Krish */
+.team { background: radial-gradient(60% 80% at 0% 100%, rgba(225, 29, 46, 0.14), transparent 60%), var(--bg); }
+.team-grid { display: grid; gap: 2.5rem; }
+@media (min-width: 800px) { .team-grid { grid-template-columns: 0.9fr 1.1fr; align-items: center; } }
+.team-photo {
+  aspect-ratio: 4 / 5; background: var(--card); border: 1px dashed var(--line); display: grid; place-items: center;
+  background-image: repeating-linear-gradient(135deg, rgba(255,255,255,0.03) 0 2px, transparent 2px 12px);
+}
+.team-bio { margin: 0 0 1.5rem; }
+.team-facts { margin: 0 0 1.75rem; display: grid; gap: 0; border-top: 1px solid var(--line); }
+.team-facts div { display: grid; grid-template-columns: 6rem 1fr; gap: 1rem; padding: 0.7rem 0; border-bottom: 1px solid var(--line); align-items: center; }
+.team-facts dt { font-family: var(--display); letter-spacing: var(--track-label); color: var(--red); font-size: 1.05rem; }
+.team-facts dd { margin: 0; }
+.team-quote { margin: 0; font-family: var(--serif); font-style: italic; font-size: 1.35rem; line-height: 1.3; border-left: 3px solid var(--red); padding-left: 1.1rem; }
+.team-quote footer { font-family: var(--sans); font-style: normal; font-size: var(--label); color: var(--muted); margin-top: 0.5rem; }
+
+/* How it works + FAQ (red, halftone) */
+.faq.is-red {
+  background:
+    linear-gradient(180deg, rgba(225, 29, 46, 0) 30%, var(--red) 100%),
+    radial-gradient(circle, rgba(0, 0, 0, 0.18) 1.3px, transparent 1.8px) 0 0 / 14px 14px,
+    linear-gradient(180deg, #cf1729 0%, var(--red) 100%);
+}
+.steps { list-style: none; padding: 0; margin: 2.5rem 0 0; display: grid; gap: 1rem; grid-template-columns: 1fr; counter-reset: none; }
+@media (min-width: 700px) { .steps { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1100px) { .steps { grid-template-columns: repeat(5, 1fr); } }
+.steps li { margin: 0; background: var(--card); padding: 1.3rem 1.2rem; border-top: 3px solid #fff; }
+.step-n { font-family: var(--display); letter-spacing: var(--track-label); font-size: 1rem; opacity: 0.8; }
+.steps h3 { font-size: 1.9rem; margin: 0.3rem 0 0.4rem; }
+.steps p { margin: 0; font-size: 0.95rem; line-height: 1.45; }
+.faq-title { margin-top: 4rem; }
+.faq-list { margin-top: 1.75rem; border-top: 1px solid var(--line); max-width: 52rem; }
+.faq-list details { border-bottom: 1px solid var(--line); }
+.faq-list summary {
+  cursor: pointer; list-style: none; padding: 1.05rem 2.5rem 1.05rem 0; position: relative; font-weight: 600; font-size: 1.1rem;
+}
+.faq-list summary::-webkit-details-marker { display: none; }
+.faq-list summary::after { content: "+"; position: absolute; right: 0.25rem; top: 50%; transform: translateY(-50%); font-family: var(--display); font-size: 1.8rem; }
+.faq-list details[open] summary::after { content: "–"; }
+.faq-list summary:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.faq-list details p { margin: 0 0 1.2rem; max-width: 44rem; }
+
+/* Booking form extras */
+.quote-form .privacy-note { margin: 0; font-size: var(--label); color: var(--muted); }
+.quote-form .privacy-note a { color: #fff; }
+@media (min-width: 640px) {
+  .quote-form { grid-template-columns: 1fr 1fr; }
+  .quote-form label:has(textarea), .quote-form button, .quote-form .form-note, .quote-form .privacy-note { grid-column: 1 / -1; }
+}
+
+/* Footer back on black, separated from the red For DJs band */
+.site-footer { border-top: 1px solid var(--line); }
+.legal a { color: inherit; }
+.quote-form { align-items: start; }
+@media (max-width: 639px) {
+  .trust-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem 1rem; }
+  .trust-row li:last-child { grid-column: 1 / -1; }
+}

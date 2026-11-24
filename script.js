@@ -146,7 +146,8 @@
   }
 
   // Photos + lightbox
-  const shots = Array.from(document.querySelectorAll(".shot[data-photo]"));
+  // Gallery stays hidden (and unprobed) until real photos are added and the section is un-hidden
+  const shots = Array.from(document.querySelectorAll("#gallery:not([hidden]) .shot[data-photo]"));
   const lightbox = document.querySelector("#lightbox");
   const lbImg = lightbox ? lightbox.querySelector("img") : null;
   const lbCap = lightbox ? lightbox.querySelector(".lightbox-cap") : null;
