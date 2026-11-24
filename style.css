@@ -1099,3 +1099,16 @@ code {
 }
 .cta-band.is-red { clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--slant)), 0 100%); }
 .for-djs.is-red { clip-path: polygon(0 var(--slant), 100% 0, 100% 100%, 0 100%); margin-top: calc(var(--slant) * -0.5); }
+
+/* ===== Alive 5: soft red spotlight that follows the cursor on dark sections (fine pointer only; JS sets --mx/--my) ===== */
+.spot-on .services, .spot-on .book, .spot-on .hero-strip, .spot-on .lighting-section, .spot-on .team { position: relative; }
+.spot-on .services::before, .spot-on .book::before, .spot-on .hero-strip::before, .spot-on .lighting-section::before, .spot-on .team::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  background: radial-gradient(420px circle at var(--mx, -999px) var(--my, -999px), rgba(225, 29, 46, 0.13), transparent 65%);
+  opacity: var(--spot, 0); transition: opacity 0.4s var(--ease);
+}
+.spot-on .services > *, .spot-on .book > *, .spot-on .hero-strip > *, .spot-on .lighting-section > *, .spot-on .team > * { position: relative; z-index: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .spot-on .services::before, .spot-on .book::before, .spot-on .hero-strip::before, .spot-on .lighting-section::before, .spot-on .team::before { display: none; }
+}

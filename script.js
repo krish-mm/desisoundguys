@@ -421,3 +421,26 @@ document.querySelectorAll(".svc-grid, .fx-grid, .steps, .review-grid, .reviews-g
     })(t0);
   }, { threshold: 0.4 }).observe(row);
 })();
+
+// ===== Alive 5: cursor spotlight on dark sections (mouse/trackpad only, off for reduced motion) =====
+(function () {
+  if (!window.matchMedia("(pointer: fine)").matches || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  document.documentElement.classList.add("spot-on");
+  var secs = document.querySelectorAll(".services, .book, .hero-strip, .lighting-section, .team");
+  var raf = 0, last = null, active = null;
+  function paint() {
+    raf = 0;
+    if (!last) return;
+    var r = last.sec.getBoundingClientRect();
+    last.sec.style.setProperty("--mx", (last.x - r.left) + "px");
+    last.sec.style.setProperty("--my", (last.y - r.top) + "px");
+  }
+  secs.forEach(function (sec) {
+    sec.addEventListener("pointermove", function (e) {
+      if (active !== sec) { if (active) active.style.setProperty("--spot", "0"); active = sec; sec.style.setProperty("--spot", "1"); }
+      last = { sec: sec, x: e.clientX, y: e.clientY };
+      if (!raf) raf = requestAnimationFrame(paint);
+    }, { passive: true });
+    sec.addEventListener("pointerleave", function () { sec.style.setProperty("--spot", "0"); if (active === sec) active = null; });
+  });
+})();
