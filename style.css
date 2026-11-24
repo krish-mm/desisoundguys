@@ -1109,6 +1109,19 @@ code {
 }
 .spot-on .services > *, .spot-on .book > *, .spot-on .hero-strip > *, .spot-on .lighting-section > *, .spot-on .team > * { position: relative; z-index: 1; }
 
+/* ===== Alive 6: header tightens and goes glassy once you scroll ===== */
+.site-header { transition: background 0.35s var(--ease), box-shadow 0.35s var(--ease); }
+.header-inner { transition: min-height 0.35s var(--ease); }
+.site-header.is-scrolled {
+  background: rgba(10, 10, 10, 0.68);
+  backdrop-filter: blur(18px) saturate(1.4);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  box-shadow: 0 1px 0 rgba(225, 29, 46, 0.55), 0 10px 30px -12px rgba(0, 0, 0, 0.8);
+}
+.site-header.is-scrolled .header-inner { min-height: calc(var(--header) - 16px); }
+@media (max-width: 799px) { .site-nav { top: 100%; } }
+
 @media (prefers-reduced-motion: reduce) {
+  .site-header, .header-inner { transition: none; }
   .spot-on .services::before, .spot-on .book::before, .spot-on .hero-strip::before, .spot-on .lighting-section::before, .spot-on .team::before { display: none; }
 }

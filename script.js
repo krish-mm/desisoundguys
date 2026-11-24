@@ -444,3 +444,13 @@ document.querySelectorAll(".svc-grid, .fx-grid, .steps, .review-grid, .reviews-g
     sec.addEventListener("pointerleave", function () { sec.style.setProperty("--spot", "0"); if (active === sec) active = null; });
   });
 })();
+
+// ===== Alive 6: header state on scroll =====
+(function () {
+  var header = document.querySelector(".site-header");
+  if (!header) return;
+  var ticking = false;
+  function update() { ticking = false; header.classList.toggle("is-scrolled", window.scrollY > 40); }
+  window.addEventListener("scroll", function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+  update();
+})();
