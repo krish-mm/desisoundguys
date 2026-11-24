@@ -287,38 +287,17 @@ h3 { font-size: var(--display-sm); }
   margin-top: 2rem;
 }
 
-/* Ticker — same body size, not a second label style */
-.ticker {
-  overflow: hidden;
-  white-space: nowrap;
-}
-.ticker-track {
-  display: flex;
-  gap: 2.5rem;
-  width: max-content;
-  animation: tick 36s linear infinite;
-  padding: 0.85rem 0;
-  font-size: var(--body);
-  color: var(--muted);
-}
-.ticker-track span::before {
-  content: "·";
-  color: #0a0a0a;
-  margin-right: 2.5rem;
-}
-@keyframes tick { to { transform: translateX(-50%); } }
-
 /* Sections */
-/* One rhythm for every section: same padding, backgrounds alternate black / red in page order:
-   hero (dark), ticker (red strip), vibe (black), services (red), lighting + gear (black), call (red),
-   gallery (black), reviews (red), for DJs (black), book (red), footer (black) */
+/* One rhythm for every section: same padding, backgrounds alternate dark / red in page order:
+   hero (dark), vibe (red), services (black), call (red), effects (black), gallery (red),
+   reviews (black), for DJs (red), book (black), footer (red) */
 .intro, .services, .lighting-section, .gallery, .reviews, .for-djs, .book {
   padding: 6rem 0;
 }
 @media (max-width: 799px) {
   .intro, .services, .lighting-section, .gallery, .reviews, .for-djs, .book { padding: 4.5rem 0; }
 }
-.intro, .gallery, .for-djs { background: var(--bg); }
+.services, .reviews, .book { background: var(--bg); }
 
 /* Red sections: white text, dark translucent cards, white buttons and accents */
 .is-red {
@@ -529,7 +508,7 @@ h2 + .section-lead, h2 + .accent { margin-top: 0.4rem; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .beam, .ticker-track { animation: none; }
+  .beam { animation: none; }
   .reveal, .reveal.in { opacity: 1; transform: none; transition: none; }
 }
 
@@ -713,14 +692,8 @@ code {
   --red-deep: #a8101d;
   --red-darker: #7e0b15;
 }
-/* Ticker: fine diagonal pinstripes, darker toward the bottom edge */
-.ticker.is-red {
-  background:
-    repeating-linear-gradient(135deg, rgba(0, 0, 0, 0.13) 0 2px, transparent 2px 10px),
-    linear-gradient(180deg, var(--red) 0%, #c6162a 100%);
-}
-/* Services: stage spotlight from above, darker vignette at the sides, film grain */
-.services.is-red {
+/* Vibe: stage spotlight from above, darker vignette at the sides, film grain */
+.intro.is-red {
   background:
     var(--grain),
     radial-gradient(ellipse 60% 45% at 50% -8%, rgba(255, 255, 255, 0.08), transparent 70%),
@@ -740,15 +713,15 @@ code {
   from { background-position: 0% 0, 100% 0, 0 0; }
   to { background-position: 100% 0, 0% 0, 0 0; }
 }
-/* Reviews: halftone dot screen that fades in toward the bottom */
-.reviews.is-red {
+/* Gallery: halftone dot screen that fades in toward the bottom */
+.gallery.is-red {
   background:
     linear-gradient(180deg, var(--red) 0%, rgba(225, 29, 46, 0.6) 35%, rgba(225, 29, 46, 0) 75%),
     radial-gradient(circle, rgba(0, 0, 0, 0.2) 1.3px, transparent 1.8px) 0 0 / 14px 14px,
     linear-gradient(180deg, var(--red) 0%, #cf1729 100%);
 }
-/* Booking: deep diagonal falloff into crimson, warm glow behind the heading, grain */
-.book.is-red {
+/* For DJs: deep diagonal falloff into crimson, warm glow behind the heading, grain */
+.for-djs.is-red {
   background:
     var(--grain),
     radial-gradient(ellipse 50% 60% at 15% 20%, rgba(255, 70, 80, 0.1), transparent 70%),
@@ -876,3 +849,20 @@ code {
   font-size: 0.62em; letter-spacing: 0.12em; vertical-align: 0.32em; line-height: 1; transform: rotate(-3deg);
 }
 .vibe-big em { white-space: nowrap; }
+
+/* Recolour pass: footer red, vibe on red, services on black */
+.site-footer.is-red {
+  background:
+    repeating-linear-gradient(135deg, rgba(0, 0, 0, 0.1) 0 2px, transparent 2px 10px),
+    linear-gradient(180deg, var(--red-deep) 0%, var(--red-darker) 100%);
+}
+.is-red .socials a:hover, .is-red .legal a:hover { color: #0a0a0a; }
+.is-red .vibe-big em { color: #0a0a0a; }
+.is-red .vibe-no { border-color: #fff; }
+.is-red .yt-card:focus-visible { outline-color: #fff; }
+.is-red .shot figcaption span { color: #fff; }
+.svc-card { background: var(--card); border-top-color: var(--red); }
+.svc-num { color: var(--muted); }
+.svc-card ul, .svc-card li { border-color: var(--line); }
+.svc-card li::before { background: var(--red); }
+.periodt { background: var(--red); }
