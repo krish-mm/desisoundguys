@@ -49,6 +49,52 @@
     });
   }
 
+  // Guest count: under 50 gets a friendly heads-up, never a hard block.
+  const GUEST_MIN = 50;
+  const guestInput = form ? form.querySelector('input[name="guests"]') : null;
+  const guestDialog = document.getElementById("guest-dialog");
+  let guestAcked = null; // the under-50 value the visitor already chose to keep
+  let guestMode = "field";
+  const guestsLow = () => {
+    if (!guestInput || guestInput.value === "") return false;
+    const n = Number(guestInput.value);
+    return Number.isFinite(n) && n > 0 && n < GUEST_MIN;
+  };
+  const openGuestDialog = (mode) => {
+    if (!guestDialog || typeof guestDialog.showModal !== "function") return false;
+    guestMode = mode;
+    guestDialog.querySelector('[data-guest="go"]').textContent = mode === "submit" ? "Send anyway" : "Keep it";
+    if (!guestDialog.open) guestDialog.showModal();
+    guestDialog.querySelector('[data-guest="change"]').focus();
+    return true;
+  };
+  if (guestDialog && guestInput) {
+    guestDialog.addEventListener("click", (e) => {
+      const b = e.target.closest("[data-guest]");
+      if (!b) return;
+      if (b.dataset.guest === "change") {
+        guestDialog.close("change");
+      } else {
+        guestAcked = guestInput.value;
+        guestDialog.close("go");
+      }
+    });
+    guestDialog.addEventListener("close", () => {
+      if (guestDialog.returnValue === "go" && guestMode === "submit") {
+        guestDialog.returnValue = "";
+        if (typeof form.requestSubmit === "function") form.requestSubmit();
+        else form.dispatchEvent(new Event("submit", { cancelable: true }));
+        return;
+      }
+      guestDialog.returnValue = "";
+      guestInput.focus();
+      if (guestInput.select) guestInput.select();
+    });
+    guestInput.addEventListener("change", () => {
+      if (guestsLow() && guestInput.value !== guestAcked) openGuestDialog("field");
+    });
+  }
+
   if (form) {
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
@@ -57,6 +103,7 @@
       const show = (msg) => { if (note) { note.hidden = false; note.textContent = msg; } };
       if (!checkDate()) show(dateInput.validationMessage);
       if (!form.checkValidity()) { form.reportValidity(); return; }
+      if (guestsLow() && guestInput.value !== guestAcked && openGuestDialog("submit")) return;
       btn.disabled = true;
       show("Sending…");
       try {
@@ -68,6 +115,7 @@
         const data = await res.json().catch(() => ({}));
         if (!res.ok || String(data.success) === "false") throw new Error(data.message || "failed");
         form.reset();
+        guestAcked = null;
         show("Got it. We’ll be in touch soon.");
       } catch (err) {
         show("Couldn’t send right now. Email desisoundguys@gmail.com or call (206) 388-8696.");

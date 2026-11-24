@@ -992,3 +992,21 @@ code {
 }
 .hero-copy .tagline { margin-top: 1.75rem; }
 @media (max-width: 799px) { .hero-copy .tagline { margin-top: 1.25rem; } }
+
+/* Guest count heads-up (under 50 guests) */
+.guest-dialog {
+  width: min(30rem, calc(100% - 2rem)); padding: 2rem 2rem 1.75rem; margin: auto;
+  background: var(--bg); color: #fff; border: 1px solid var(--line); border-top: 3px solid var(--red);
+  font-family: var(--sans);
+}
+.guest-dialog::backdrop { background: rgba(0, 0, 0, 0.78); backdrop-filter: blur(4px); }
+.guest-dialog[open] { animation: fxIn 0.3s var(--ease); }
+.guest-dialog h2 { margin: 0 0 0.6rem; font-family: var(--display); font-weight: 400; font-size: clamp(2rem, 6vw, 2.6rem); line-height: 1; letter-spacing: var(--track-display); color: #fff; }
+.guest-dialog p { margin: 0 0 1.5rem; color: rgba(255, 255, 255, 0.82); font-size: var(--body); line-height: 1.5; }
+.guest-dialog-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.guest-dialog .btn:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+@media (max-width: 479px) {
+  .guest-dialog { padding: 1.6rem 1.4rem 1.4rem; }
+  .guest-dialog-actions .btn { flex: 1 1 100%; justify-content: center; text-align: center; }
+}
+@media (prefers-reduced-motion: reduce) { .guest-dialog[open] { animation: none; } }
