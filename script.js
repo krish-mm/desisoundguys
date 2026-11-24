@@ -193,22 +193,21 @@
     })();
   }
 
-  // LED dance floor tile: real clip, loaded and played only when visible and motion is OK; poster otherwise
-  const fxVideo = document.querySelector("video.fx-clip[data-src]");
-  if (fxVideo) {
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+  // Effect tile clips (LED dance floor, cold sparks): loaded and played only when visible and motion is OK; poster otherwise
+  const reduceClips = window.matchMedia("(prefers-reduced-motion: reduce)");
+  document.querySelectorAll("video.fx-clip[data-src]").forEach((clip) => {
     let inView = false;
     const sync = () => {
-      if (reduce.matches || !inView) { fxVideo.pause(); return; }
-      if (!fxVideo.getAttribute("src")) fxVideo.src = fxVideo.dataset.src;
-      const p = fxVideo.play();
+      if (reduceClips.matches || !inView) { clip.pause(); return; }
+      if (!clip.getAttribute("src")) clip.src = clip.dataset.src;
+      const p = clip.play();
       if (p && p.catch) p.catch(function () {});
     };
     if ("IntersectionObserver" in window) {
-      new IntersectionObserver((entries) => { inView = entries[0].isIntersecting; sync(); }, { rootMargin: "200px" }).observe(fxVideo);
+      new IntersectionObserver((entries) => { inView = entries[0].isIntersecting; sync(); }, { rootMargin: "200px" }).observe(clip);
     } else { inView = true; sync(); }
-    if (reduce.addEventListener) reduce.addEventListener("change", sync);
-  }
+    if (reduceClips.addEventListener) reduceClips.addEventListener("change", sync);
+  });
 
   // Photos + lightbox
   // Gallery stays hidden (and unprobed) until real photos are added and the section is un-hidden
