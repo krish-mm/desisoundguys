@@ -640,26 +640,25 @@ code {
 
 /* Hero line animation: lines rise in one after another, "We do iconic." pops and glows */
 .hero-copy .tl, .hero-strip .tl { display: block; opacity: 0; animation: lineIn 0.8s var(--ease) forwards; }
-.hero-copy .hero-what { opacity: 0; animation: lineIn 0.8s var(--ease) 0.3s forwards; }
-.tagline .tl:nth-child(1) { animation-delay: 0.6s; }
-.tagline .tl:nth-child(2) { animation-delay: 0.9s; }
-.tagline .tl:nth-child(3) { animation-delay: 1.2s; }
-.tagline .tl:nth-child(4) { animation-delay: 1.5s; }
-.hero-copy .iconic { opacity: 0; animation: iconicIn 0.9s var(--ease) 1.8s forwards, glow 3s ease-in-out 2.9s infinite; }
-.vibe .tl:nth-child(1) { animation-delay: 2.1s; }
-.vibe .tl:nth-child(2) { animation-delay: 2.4s; }
+.tagline .tl:nth-child(1) { animation-delay: 0.3s; }
+.tagline .tl:nth-child(2) { animation-delay: 0.6s; }
+.tagline .tl:nth-child(3) { animation-delay: 0.9s; }
+.tagline .tl:nth-child(4) { animation-delay: 1.2s; }
+.hero-copy .iconic { opacity: 0; animation: iconicIn 0.9s var(--ease) 1.5s forwards, glow 3s ease-in-out 2.6s infinite; }
+.vibe .tl:nth-child(1) { animation-delay: 1.8s; }
+.vibe .tl:nth-child(2) { animation-delay: 2.1s; }
 .vibe .always { position: relative; display: inline-block; }
 .vibe .always::after {
   content: ""; position: absolute; left: 0; bottom: 0.05em; height: 2px; width: 100%;
   background: var(--red); transform: scaleX(0); transform-origin: left;
-  animation: underline 0.7s var(--ease) 3s forwards;
+  animation: underline 0.7s var(--ease) 2.7s forwards;
 }
 @keyframes lineIn { from { opacity: 0; transform: translateY(0.6em); filter: blur(6px); } to { opacity: 1; transform: none; filter: none; } }
 @keyframes iconicIn { 0% { opacity: 0; transform: scale(0.85); letter-spacing: 0.2em; } 100% { opacity: 1; transform: none; } }
 @keyframes glow { 0%, 100% { text-shadow: 0 0 0 transparent; } 50% { text-shadow: 0 0 18px rgba(225, 29, 46, 0.65); } }
 @keyframes underline { to { transform: scaleX(1); } }
 @media (prefers-reduced-motion: reduce) {
-  .hero-copy .tl, .hero-strip .tl, .hero-copy .iconic, .hero-copy .hero-what { opacity: 1; animation: none; }
+  .hero-copy .tl, .hero-strip .tl, .hero-copy .iconic { opacity: 1; animation: none; }
   .vibe .always::after { transform: scaleX(1); animation: none; }
 }
 
@@ -869,13 +868,6 @@ code {
 [hidden] { display: none !important; }
 .is-red .need { border-color: #fff; background: rgba(10, 10, 10, 0.28); }
 
-/* Hero: what we are, in one line */
-.hero-what {
-  font-family: var(--sans); font-weight: 600; font-size: var(--label); letter-spacing: var(--track-label);
-  text-transform: uppercase; color: #fff; margin: 0.6rem 0 0; display: inline-block;
-  border-left: 3px solid var(--red); padding: 0.15rem 0 0.15rem 0.7rem;
-}
-
 /* Hero trust row */
 .trust-row {
   list-style: none; padding: 1.25rem 0 0; margin: 2.5rem 0 0; display: flex; flex-wrap: wrap; gap: 1rem 2.25rem;
@@ -998,3 +990,5 @@ code {
   .hero-strip .hero-actions { width: 100%; }
   .hero-strip .trust-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem 1.5rem; margin-top: 1.75rem; }
 }
+.hero-copy .tagline { margin-top: 1.75rem; }
+@media (max-width: 799px) { .hero-copy .tagline { margin-top: 1.25rem; } }
