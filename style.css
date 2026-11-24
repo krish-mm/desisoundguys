@@ -1138,3 +1138,31 @@ code {
   .site-nav .btn-primary, .hero-strip .btn-primary { animation: none; }
   .spot-on .services::before, .spot-on .book::before, .spot-on .hero-strip::before, .spot-on .lighting-section::before, .spot-on .team::before { display: none; }
 }
+
+/* ===== YT PROPOSAL A: featured + reel layout ===== */
+@media (min-width: 1000px) {
+  .yt-grid { grid-template-columns: repeat(3, 1fr); grid-auto-flow: dense; }
+  .yt-card.yt-feature { grid-column: span 2; grid-row: span 2; }
+}
+/* ===== YT PROPOSAL B: sharp branded thumbnails ===== */
+.yt-card img { filter: saturate(0.85) contrast(1.05); transition: transform 0.6s var(--ease), filter 0.6s var(--ease); }
+.yt-card::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(0deg, rgba(10, 10, 10, 0.92) 0%, rgba(10, 10, 10, 0.35) 38%, rgba(120, 0, 12, 0.18) 100%);
+  transition: opacity 0.5s var(--ease); }
+.yt-card:hover img { transform: scale(1.05); filter: saturate(1.1) contrast(1.05); }
+.yt-card:hover::after { opacity: 0.7; }
+.yt-card { box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12); }
+.yt-title { z-index: 2; background: none; font-family: var(--display); font-weight: 400; font-size: clamp(1.15rem, 1.6vw, 1.45rem); letter-spacing: var(--track-display); line-height: 1.05; padding: 0.9rem 1.1rem 1rem; text-transform: uppercase; }
+.yt-feature .yt-title { font-size: clamp(1.6rem, 3vw, 2.6rem); padding: 1.4rem 1.6rem 1.5rem; }
+.yt-kicker { display: block; width: fit-content; font-family: var(--sans); font-weight: 600; font-size: 0.68rem; letter-spacing: 0.16em; background: var(--red); color: #fff; padding: 0.2rem 0.45rem; margin-bottom: 0.5rem; }
+.yt-play { z-index: 2; box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.18), 0 10px 30px rgba(0, 0, 0, 0.5); }
+.yt-feature .yt-play { width: 92px; height: 92px; }
+.is-red .yt-play { background: #fff; color: var(--red); }
+@media (prefers-reduced-motion: reduce) { .yt-card img, .yt-card::after { transition: none; } .yt-card:hover img { transform: none; } }
+/* ===== YT PROPOSAL C: cinematic lightbox ===== */
+.yt-dialog { width: min(100% - 2rem, 1100px); padding: 0; border: 0; background: #000; border-top: 3px solid var(--red); overflow: visible; }
+.yt-dialog::backdrop { background: rgba(0, 0, 0, 0.88); backdrop-filter: blur(6px); }
+.yt-frame { aspect-ratio: 16 / 9; width: 100%; }
+.yt-frame iframe { width: 100%; height: 100%; border: 0; display: block; }
+.yt-close { position: absolute; top: -2.9rem; right: 0; background: transparent; color: #fff; border: 1px solid #fff; padding: 0.5rem 0.8rem; font-family: var(--sans); font-size: var(--label); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; }
+.yt-close:hover { background: #fff; color: #0a0a0a; }
