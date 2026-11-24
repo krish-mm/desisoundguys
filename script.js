@@ -529,3 +529,50 @@ document.querySelectorAll(".svc-grid, .fx-grid, .steps, .review-grid, .reviews-g
     });
   });
 })();
+
+// YT 6: phone carousel arrows + progress dots (hidden on wider screens by CSS)
+(function () {
+  var grid = document.querySelector('.yt-grid');
+  var nav = document.querySelector('.yt-nav');
+  if (!grid || !nav) return;
+  var dotsEl = nav.querySelector('.yt-dots');
+  var prev = nav.querySelector('.yt-prev'), next = nav.querySelector('.yt-next');
+  var smooth = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+  function visible() { return [].slice.call(grid.querySelectorAll('.yt-card')).filter(function (c) { return !c.hidden; }); }
+  function current() {
+    var v = visible(), x = grid.scrollLeft, best = 0, d = Infinity;
+    v.forEach(function (c, i) { var dd = Math.abs(c.offsetLeft - grid.offsetLeft - x - parseFloat(getComputedStyle(grid).paddingLeft || 0)); if (dd < d) { d = dd; best = i; } });
+    if (grid.scrollLeft + grid.clientWidth >= grid.scrollWidth - 4) best = v.length - 1;
+    return best;
+  }
+  function go(i) {
+    var v = visible(); if (!v[i]) return;
+    grid.scrollTo({ left: v[i].offsetLeft - v[0].offsetLeft, behavior: smooth });
+  }
+  function build() {
+    dotsEl.innerHTML = '';
+    var v = visible();
+    nav.hidden = v.length < 2;
+    v.forEach(function (c, i) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'yt-dot';
+      b.setAttribute('aria-label', 'Go to video ' + (i + 1) + ' of ' + v.length);
+      b.addEventListener('click', function () { go(i); });
+      dotsEl.appendChild(b);
+    });
+    sync();
+  }
+  var ticking = false;
+  function sync() {
+    ticking = false;
+    var i = current(), n = visible().length;
+    [].forEach.call(dotsEl.children, function (d, k) { d.classList.toggle('is-on', k === i); d.setAttribute('aria-current', k === i ? 'true' : 'false'); });
+    prev.disabled = i <= 0; next.disabled = i >= n - 1;
+  }
+  grid.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(sync); } }, { passive: true });
+  prev.addEventListener('click', function () { go(Math.max(0, current() - 1)); });
+  next.addEventListener('click', function () { go(Math.min(visible().length - 1, current() + 1)); });
+  grid.addEventListener('yt:filter', build);
+  window.addEventListener('resize', sync);
+  build();
+})();

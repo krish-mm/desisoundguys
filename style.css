@@ -1183,3 +1183,20 @@ code {
   .yt-card.yt-solo { grid-column: span 2; grid-row: span 2; }
 }
 @media (prefers-reduced-motion: reduce) { .yt-chip { transition: none; } }
+/* YT 6: phone carousel arrows + progress dots */
+.yt-nav { display: none; }
+@media (max-width: 699px) {
+  .yt-nav:not([hidden]) { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; margin-top: 0.9rem; }
+  .yt-arrow { width: 44px; height: 44px; flex: none; display: grid; place-items: center; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.7); background: transparent; color: #fff; cursor: pointer; padding: 0; transition: background-color 0.2s, color 0.2s, opacity 0.2s; }
+  .yt-arrow:active { background: #fff; color: var(--red); }
+  .yt-arrow:disabled { opacity: 0.35; cursor: default; }
+  .yt-dots { display: flex; gap: 0.25rem; justify-content: center; flex: 1; }
+  .yt-dot { width: 24px; height: 24px; padding: 0; border: 0; background: transparent; cursor: pointer; display: grid; place-items: center; }
+  .yt-dot::before { content: ""; width: 8px; height: 8px; border-radius: 999px; background: rgba(255, 255, 255, 0.45); transition: width 0.3s var(--ease), background-color 0.3s; }
+  .yt-dot.is-on::before { width: 22px; background: #fff; }
+  .yt-dot:focus-visible, .yt-arrow:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+  .yt-filters { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-inline: -1.25rem; padding-inline: 1.25rem; }
+  .yt-filters::-webkit-scrollbar { display: none; }
+  .yt-chip { flex: none; }
+}
+@media (prefers-reduced-motion: reduce) { .yt-arrow, .yt-dot::before { transition: none; } }
