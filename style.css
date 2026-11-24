@@ -1200,3 +1200,4 @@ code {
   .yt-chip { flex: none; }
 }
 @media (prefers-reduced-motion: reduce) { .yt-arrow, .yt-dot::before { transition: none; } }
+@media (max-width: 699px) { .yt-filters { gap: 0.4rem; } .yt-chip { padding: 0.4rem 0.7rem; font-size: 0.7rem; letter-spacing: 0.04em; } }
