@@ -1153,10 +1153,13 @@ code {
 .yt-card:hover::after { opacity: 0.7; }
 .yt-card { box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12); }
 .yt-title { z-index: 2; background: none; font-family: var(--display); font-weight: 400; font-size: clamp(1.15rem, 1.6vw, 1.45rem); letter-spacing: var(--track-display); line-height: 1.05; padding: 0.9rem 1.1rem 1rem; text-transform: uppercase; }
-.yt-feature .yt-title { font-size: clamp(1.6rem, 3vw, 2.6rem); padding: 1.4rem 1.6rem 1.5rem; }
+
 .yt-kicker { display: block; width: fit-content; font-family: var(--sans); font-weight: 600; font-size: 0.68rem; letter-spacing: 0.16em; background: var(--red); color: #fff; padding: 0.2rem 0.45rem; margin-bottom: 0.5rem; }
 .yt-play { z-index: 2; box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.18), 0 10px 30px rgba(0, 0, 0, 0.5); }
-.yt-feature .yt-play { width: 92px; height: 92px; }
+@media (min-width: 1000px) {
+  .yt-feature .yt-title { font-size: clamp(1.6rem, 3vw, 2.6rem); padding: 1.4rem 1.6rem 1.5rem; }
+  .yt-feature .yt-play { width: 92px; height: 92px; }
+}
 .is-red .yt-play { background: #fff; color: var(--red); }
 @media (prefers-reduced-motion: reduce) { .yt-card img, .yt-card::after { transition: none; } .yt-card:hover img { transform: none; } }
 /* ===== YT PROPOSAL C: cinematic lightbox ===== */
