@@ -193,7 +193,7 @@
     })();
   }
 
-  // Effect tile clips (LED dance floor, cold sparks): loaded and played only when visible and motion is OK; poster otherwise
+  // Effect tile clips: loaded and played only when visible and motion is OK; poster otherwise
   const reduceClips = window.matchMedia("(prefers-reduced-motion: reduce)");
   document.querySelectorAll("video.fx-clip[data-src]").forEach((clip) => {
     let inView = false;
@@ -315,7 +315,29 @@ document.querySelectorAll('.yt-card').forEach(bindYt);
     if (h) h.id = 'fx-dialog-title';
     var img = copy.querySelector('img');
     if (img) img.loading = 'eager';
+    // Stacked layout: title + text first, then the tile's own clip at full width.
+    // No photos in pop-ups: tiles without a clip get a video placeholder.
+    copy.querySelectorAll('.fx-photo').forEach(function (el) { el.remove(); });
+    var tileClip = btn.querySelector('video.fx-clip[data-src]');
+    var media;
+    if (tileClip) {
+      media = document.createElement('video');
+      media.className = 'fx-photo fx-pop-clip';
+      media.muted = true; media.loop = true; media.playsInline = true;
+      media.setAttribute('muted', ''); media.setAttribute('playsinline', '');
+      media.preload = 'auto';
+      media.poster = tileClip.getAttribute('poster') || '';
+      media.setAttribute('aria-label', tileClip.getAttribute('aria-label') || '');
+      media.width = tileClip.width; media.height = tileClip.height;
+      media.src = tileClip.dataset.src;
+    } else {
+      media = document.createElement('span');
+      media.className = 'fx-photo fx-ph';
+      media.innerHTML = '<span class="need">[Add: video]</span>';
+    }
+    copy.appendChild(media);
     var slot = copy.querySelector('.fx-video');
+    if (slot && !(panel.dataset.yt || '').trim()) { slot.remove(); slot = null; }
     var yt = (panel.dataset.yt || '').trim();
     var name = h ? h.textContent : 'Effect';
     if (slot) {
@@ -338,11 +360,18 @@ document.querySelectorAll('.yt-card').forEach(bindYt);
     btn.setAttribute('aria-expanded', 'true');
     if (!dialog.open) dialog.showModal();
     closeBtn.focus();
+    var popClip = body.querySelector('video.fx-pop-clip');
+    if (popClip && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      var pp = popClip.play();
+      if (pp && pp.catch) pp.catch(function () {});
+    }
   }
   document.querySelectorAll('.fx-btn').forEach(function (btn) {
     btn.addEventListener('click', function () { open(btn); });
   });
   function cleanup() {
+    var popClip = body.querySelector('video.fx-pop-clip');
+    if (popClip) { popClip.pause(); popClip.removeAttribute('src'); popClip.load(); }
     body.innerHTML = '';
     if (lastBtn) {
       lastBtn.setAttribute('aria-expanded', 'false');

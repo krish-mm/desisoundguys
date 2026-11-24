@@ -812,9 +812,12 @@ code {
 .fx-ph.fx-photo, .fx-ph.fx-thumb { display: grid; place-items: center; }
 .fx-facts dt { color: #ff6470; }
 .fx-facts dd + dt { margin-top: 0.35rem; }
+/* Effect pop-up: stacked, text on top, media full width below (height capped so the text stays in view) */
+.fx-dialog .fx-panel { display: flex; flex-direction: column; }
+.fx-dialog .fx-photo { order: 2; width: 100%; height: auto; aspect-ratio: 16 / 9; max-height: 48svh; object-fit: cover; background: #000; }
+.fx-dialog .fx-body { order: 1; }
 @media (min-width: 800px) {
-  .fx-dialog .fx-photo { height: 100%; aspect-ratio: auto; min-height: 22rem; }
-  .fx-dialog .fx-body { padding: 2rem 2rem 2rem; }
+  .fx-dialog .fx-body { padding: 2rem 2rem 1.75rem; }
 }
 
 /* Services: 4 cards on the red section */
