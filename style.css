@@ -1025,6 +1025,10 @@ code {
 .gear-sub { margin: -0.4rem 0 1rem; font-family: var(--display); font-size: clamp(1.5rem, 3vw, 2.1rem); line-height: 1; letter-spacing: var(--track-display); color: var(--red); }
 .fx-ph { gap: 0.5rem; align-content: center; }
 .fx-tag { font-family: var(--display); font-size: 1.35rem; letter-spacing: var(--track-display); line-height: 1; color: #fff; }
+/* Tagline over a tile clip */
+.fx-media { position: relative; display: block; }
+.fx-media .fx-tag { position: absolute; left: 0.75rem; bottom: 0.65rem; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.75); pointer-events: none; }
+@media (max-width: 699px) { .fx-media .fx-tag { font-size: 1.1rem; left: 0.6rem; bottom: 0.5rem; } }
 .sign-off { color: var(--muted); }
 
 /* Decorative ticker between services and the call band */
