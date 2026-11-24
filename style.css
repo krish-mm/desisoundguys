@@ -1059,3 +1059,33 @@ code {
     radial-gradient(60% 80% at 0% 100%, rgba(225, 29, 46, 0.14), transparent 60%),
     var(--dots-fade), var(--dots-dark), var(--bg);
 }
+
+/* ===== Alive 1: staggered reveals (cards, tiles, steps, reviews cascade in) ===== */
+.reveal .svc-card, .reveal .fx-grid > li, .reveal .steps > li, .reveal .review-card {
+  opacity: 0; transform: translateY(18px);
+}
+.reveal.in .svc-card, .reveal.in .fx-grid > li, .reveal.in .steps > li, .reveal.in .review-card {
+  opacity: 1; transform: none;
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+  transition-delay: calc(var(--i, 0) * 90ms + 150ms);
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal .svc-card, .reveal .fx-grid > li, .reveal .steps > li, .reveal .review-card { opacity: 1; transform: none; transition: none; }
+}
+
+/* ===== Alive 2: effect tiles glow on hover/focus, clip zooms, + turns into x ===== */
+.fx-btn { position: relative; overflow: hidden; transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), background 0.35s var(--ease); }
+.fx-thumb { transition: transform 0.6s var(--ease), filter 0.6s var(--ease); }
+.fx-name::after { transition: transform 0.35s var(--ease); display: inline-block; }
+@media (hover: hover) {
+  .fx-btn:hover, .fx-btn:focus-visible { box-shadow: 0 0 0 2px var(--red), 0 18px 50px -6px rgba(225, 29, 46, 0.85), 0 0 80px -10px rgba(225, 29, 46, 0.6); transform: translateY(-6px); }
+  .fx-btn:hover .fx-thumb { transform: scale(1.06); filter: brightness(1.12) saturate(1.1); }
+  .fx-btn:hover .fx-name::after { transform: rotate(90deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fx-btn, .fx-thumb, .fx-name::after { transition: none; }
+  .fx-btn:hover .fx-thumb { transform: none; }
+}
+
+/* ===== Alive 3: trust row numbers count up when the strip comes into view ===== */
+.trust-row [data-count] { font-variant-numeric: tabular-nums; }

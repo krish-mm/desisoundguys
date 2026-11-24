@@ -389,3 +389,35 @@ document.querySelectorAll('.yt-card').forEach(bindYt);
   dialog.addEventListener('keydown', function (e) { if (e.key === 'Escape') { e.preventDefault(); closeFx(); } });
   dialog.addEventListener('close', cleanup);
 })();
+
+// ===== Alive 1: index children so they cascade =====
+document.querySelectorAll(".svc-grid, .fx-grid, .steps, .review-grid, .reviews-grid").forEach(function (g) {
+  Array.prototype.forEach.call(g.children, function (c, i) { c.style.setProperty("--i", i); });
+});
+
+// ===== Alive 3: count-up on trust row =====
+(function () {
+  var row = document.querySelector(".trust-row");
+  if (!row) return;
+  var targets = [];
+  row.querySelectorAll("strong").forEach(function (s) {
+    var t = s.firstChild;
+    if (!t || t.nodeType !== 3) return;
+    var m = t.nodeValue.match(/^(\d+(?:\.\d)?)(.*)$/);
+    if (!m) return;
+    s.setAttribute("data-count", "");
+    targets.push({ node: t, end: parseFloat(m[1]), dec: m[1].indexOf(".") > -1 ? 1 : 0, rest: m[2] });
+  });
+  if (!targets.length || window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) return;
+  targets.forEach(function (o) { o.node.nodeValue = (0).toFixed(o.dec) + o.rest; });
+  new IntersectionObserver(function (entries, obs) {
+    if (!entries[0].isIntersecting) return;
+    obs.disconnect();
+    var t0 = performance.now(), dur = 1400;
+    (function tick(now) {
+      var p = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+      targets.forEach(function (o) { o.node.nodeValue = (o.end * e).toFixed(o.dec) + o.rest; });
+      if (p < 1) requestAnimationFrame(tick);
+    })(t0);
+  }, { threshold: 0.4 }).observe(row);
+})();
