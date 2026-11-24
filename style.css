@@ -1051,12 +1051,12 @@ code {
 .services, .book, .hero-strip, .site-footer { background: var(--dots-fade), var(--dots-dark), var(--bg); }
 .lighting-section {
   background:
-    radial-gradient(60% 80% at 100% 0%, rgba(225, 29, 46, 0.16), transparent 55%),
+    radial-gradient(45% 45% at 85% 36%, rgba(225, 29, 46, 0.14), transparent 75%),
     var(--dots-fade), var(--dots-dark), var(--bg);
 }
 .team {
   background:
-    radial-gradient(60% 80% at 0% 100%, rgba(225, 29, 46, 0.14), transparent 60%),
+    radial-gradient(45% 45% at 15% 64%, rgba(225, 29, 46, 0.12), transparent 75%),
     var(--dots-fade), var(--dots-dark), var(--bg);
 }
 
@@ -1090,15 +1090,18 @@ code {
 /* ===== Alive 3: trust row numbers count up when the strip comes into view ===== */
 .trust-row [data-count] { font-variant-numeric: tabular-nums; }
 
-/* ===== Alive 4: slanted edges on the red sections (the dark page shows through the cut corners) ===== */
+/* ===== Alive 4: slanted edges, only on the Videos and How it works red bands (Krish t122u).
+   The red band overlaps its dark neighbours by one --slant, and the neighbours grow a transparent
+   border of the same size, so their own dot texture runs right under the cut corners (no plain band). ===== */
 :root { --slant: clamp(18px, 3vw, 44px); }
-.intro.is-red, .reviews.is-red, .faq.is-red {
+.intro.is-red, .faq.is-red {
   clip-path: polygon(0 var(--slant), 100% 0, 100% calc(100% - var(--slant)), 0 100%);
-  margin: calc(var(--slant) * -0.5) 0;
+  margin: calc(var(--slant) * -1) 0;
   position: relative;
+  z-index: 2;
 }
-.cta-band.is-red { clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--slant)), 0 100%); }
-.for-djs.is-red { clip-path: polygon(0 var(--slant), 100% 0, 100% 100%, 0 100%); margin-top: calc(var(--slant) * -0.5); }
+.hero-strip, .team { border-bottom: var(--slant) solid transparent; background-origin: border-box; }
+.services, .book { border-top: var(--slant) solid transparent; background-origin: border-box; }
 
 /* ===== Alive 5: soft red spotlight that follows the cursor on dark sections (fine pointer only; JS sets --mx/--my) ===== */
 .spot-on .services, .spot-on .book, .spot-on .hero-strip, .spot-on .lighting-section, .spot-on .team { position: relative; }
@@ -1106,6 +1109,8 @@ code {
   content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0;
   background: radial-gradient(420px circle at var(--mx, -999px) var(--my, -999px), rgba(225, 29, 46, 0.13), transparent 65%);
   opacity: var(--spot, 0); transition: opacity 0.4s var(--ease);
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 140px, #000 calc(100% - 140px), transparent);
+  mask-image: linear-gradient(180deg, transparent, #000 140px, #000 calc(100% - 140px), transparent);
 }
 .spot-on .services > *, .spot-on .book > *, .spot-on .hero-strip > *, .spot-on .lighting-section > *, .spot-on .team > * { position: relative; z-index: 1; }
 
