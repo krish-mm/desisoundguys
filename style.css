@@ -1089,3 +1089,13 @@ code {
 
 /* ===== Alive 3: trust row numbers count up when the strip comes into view ===== */
 .trust-row [data-count] { font-variant-numeric: tabular-nums; }
+
+/* ===== Alive 4: slanted edges on the red sections (the dark page shows through the cut corners) ===== */
+:root { --slant: clamp(18px, 3vw, 44px); }
+.intro.is-red, .reviews.is-red, .faq.is-red {
+  clip-path: polygon(0 var(--slant), 100% 0, 100% calc(100% - var(--slant)), 0 100%);
+  margin: calc(var(--slant) * -0.5) 0;
+  position: relative;
+}
+.cta-band.is-red { clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--slant)), 0 100%); }
+.for-djs.is-red { clip-path: polygon(0 var(--slant), 100% 0, 100% 100%, 0 100%); margin-top: calc(var(--slant) * -0.5); }
