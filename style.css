@@ -1180,9 +1180,6 @@ code {
 .yt-chip:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
 .yt-card[hidden], .yt-chip[hidden] { display: none; }
 @media (min-width: 1000px) {
-  .yt-grid.is-filtered .yt-card.yt-feature:not(.yt-solo) { grid-column: auto; grid-row: auto; }
-  .yt-grid.is-filtered .yt-card.yt-feature:not(.yt-solo) .yt-title { font-size: clamp(1.15rem, 1.6vw, 1.45rem); padding: 0.9rem 1.1rem 1rem; }
-  .yt-grid.is-filtered .yt-card.yt-feature:not(.yt-solo) .yt-play { width: 64px; height: 64px; }
   .yt-card.yt-solo { grid-column: span 2; grid-row: span 2; }
 }
 @media (prefers-reduced-motion: reduce) { .yt-chip { transition: none; } }
