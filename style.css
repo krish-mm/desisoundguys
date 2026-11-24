@@ -971,3 +971,5 @@ code {
   .trust-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem 1rem; }
   .trust-row li:last-child { grid-column: 1 / -1; }
 }
+.team-claim { font-family: var(--display); font-size: clamp(1.7rem, 2.6vw, 2.2rem); line-height: 1; letter-spacing: var(--track-display); color: var(--red); margin: 0.2rem 0 1rem; }
+.book-lead { color: var(--muted); }
