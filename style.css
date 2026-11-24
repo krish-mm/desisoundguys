@@ -909,6 +909,11 @@ code {
 .team-facts div { display: grid; grid-template-columns: 6rem 1fr; gap: 1rem; padding: 0.7rem 0; border-bottom: 1px solid var(--line); align-items: center; }
 .team-facts dt { font-family: var(--display); letter-spacing: var(--track-label); color: var(--red); font-size: 1.05rem; }
 .team-facts dd { margin: 0; }
+/* Single stat: label over the states, red rule on the left, no table borders */
+.team-played { border-top: 0; }
+.team-played div { display: block; border-bottom: 0; border-left: 3px solid var(--red); padding: 0.2rem 0 0.2rem 1rem; }
+.team-played dt { font-size: 0.95rem; margin-bottom: 0.35rem; }
+.team-played dd { font-family: var(--display); font-size: clamp(1.35rem, 2.4vw, 1.7rem); letter-spacing: 0.04em; line-height: 1.15; }
 .team-quote { margin: 0; font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 1.35rem; line-height: 1.3; border-left: 3px solid var(--red); padding-left: 1.1rem; }
 .team-quote footer { font-family: var(--sans); font-style: normal; font-size: var(--label); color: var(--muted); margin-top: 0.5rem; }
 
