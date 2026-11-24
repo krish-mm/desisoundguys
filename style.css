@@ -892,7 +892,6 @@ code {
 .trust-row li:first-child strong { color: var(--red); }
 
 /* Services: genres + price signal */
-.svc-genres { font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 1.15rem; margin: -0.4rem 0 1rem; color: #fff; }
 .price-signal {
   margin-top: 2.5rem; padding: 1.6rem 1.4rem; background: var(--card); border-left: 3px solid var(--red);
   display: grid; gap: 0.4rem 2rem; align-items: center;
@@ -926,7 +925,7 @@ code {
 .team-facts div { display: grid; grid-template-columns: 6rem 1fr; gap: 1rem; padding: 0.7rem 0; border-bottom: 1px solid var(--line); align-items: center; }
 .team-facts dt { font-family: var(--display); letter-spacing: var(--track-label); color: var(--red); font-size: 1.05rem; }
 .team-facts dd { margin: 0; }
-.team-quote { margin: 0; font-family: var(--serif); font-style: italic; font-size: 1.35rem; line-height: 1.3; border-left: 3px solid var(--red); padding-left: 1.1rem; }
+.team-quote { margin: 0; font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 1.35rem; line-height: 1.3; border-left: 3px solid var(--red); padding-left: 1.1rem; }
 .team-quote footer { font-family: var(--sans); font-style: normal; font-size: var(--label); color: var(--muted); margin-top: 0.5rem; }
 
 /* How it works + FAQ (red, halftone) */
@@ -973,8 +972,14 @@ code {
 }
 .team-claim { font-family: var(--display); font-size: clamp(1.7rem, 2.6vw, 2.2rem); line-height: 1; letter-spacing: var(--track-display); color: var(--red); margin: 0.2rem 0 1rem; }
 .book-lead { color: var(--muted); }
-.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 .slayy { font-family: var(--display); letter-spacing: 0.08em; color: var(--red); font-size: 1.15em; }
 .is-red .slayy { color: #fff; }
-.svc-flex { font-weight: 600; letter-spacing: 0.04em; color: #fff; }
 .team-quote footer a { color: inherit; }
+
+/* Font audit fixes: icon glyphs drawn as SVG (not in Bebas/Outfit), no faux bold */
+.star { width: 0.8em; height: 0.8em; display: inline-block; vertical-align: -0.02em; }
+.stars { display: flex; gap: 0.2em; font-size: 1.05rem; }
+.stars .star { width: 1em; height: 1em; }
+.trust-row strong .star { width: 0.7em; height: 0.7em; vertical-align: 0.02em; }
+.credits strong { font-weight: 600; }
+.yt-play svg { width: 45%; height: 45%; margin-left: 8%; }

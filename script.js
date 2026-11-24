@@ -261,7 +261,7 @@ document.querySelectorAll('.yt-card').forEach(bindYt);
         card.className = 'yt-card';
         card.dataset.yt = yt;
         card.setAttribute('aria-label', 'Play: ' + name);
-        card.innerHTML = '<img src="https://i.ytimg.com/vi/' + encodeURIComponent(yt) + '/hqdefault.jpg" alt="" width="480" height="360"><span class="yt-play" aria-hidden="true">▶</span>';
+        card.innerHTML = '<img src="https://i.ytimg.com/vi/' + encodeURIComponent(yt) + '/hqdefault.jpg" alt="" width="480" height="360"><span class="yt-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" focusable="false"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>';
         slot.appendChild(card);
         bindYt(card);
       } else {
