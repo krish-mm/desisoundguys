@@ -418,7 +418,7 @@ h2 + .section-lead, h2 + .accent { margin-top: 0.4rem; }
 .for-djs-inner { display: grid; gap: 1.5rem; }
 .for-djs-inner h2 { margin-bottom: 0; }
 .for-djs-inner .btn { margin-top: 0.75rem; }
-@media (min-width: 800px) { .for-djs-inner { grid-template-columns: 1fr 1fr; align-items: end; } }
+@media (min-width: 800px) { .for-djs-inner { grid-template-columns: 1fr 1fr; align-items: center; } }
 
 .quote-form {
   display: grid;
