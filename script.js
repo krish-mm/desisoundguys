@@ -479,3 +479,27 @@ document.querySelectorAll(".svc-grid, .fx-grid, .steps, .review-grid, .reviews-g
   d.querySelector('.yt-close').addEventListener('click', shut);
   d.addEventListener('click', function (e) { if (e.target === d) shut(); });
 })();
+
+// YT 4: silent in-view preview loops. A card plays its clip only if it has
+// data-preview="media/videos/<clip>.mp4" (his own footage from that event).
+// Cards without it keep the YouTube thumbnail. Off for reduced motion.
+(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var cards = document.querySelectorAll('.yt-grid .yt-card[data-preview]');
+  if (!cards.length || !('IntersectionObserver' in window)) return;
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      var card = e.target, v = card.querySelector('.yt-preview');
+      if (e.isIntersecting) {
+        if (!v) {
+          v = document.createElement('video');
+          v.className = 'yt-preview'; v.muted = true; v.loop = true; v.playsInline = true;
+          v.setAttribute('aria-hidden', 'true'); v.src = card.dataset.preview;
+          card.insertBefore(v, card.querySelector('.yt-play'));
+        }
+        var p = v.play(); if (p && p.catch) p.catch(function () {});
+      } else if (v) { v.pause(); }
+    });
+  }, { threshold: 0.5 });
+  cards.forEach(function (c) { io.observe(c); });
+})();
