@@ -359,12 +359,12 @@ h2 + .section-lead, h2 + .accent { margin-top: 0.4rem; }
 @media (max-width: 799px) { .cta-band { padding: 4rem 0; } }
 .intro-manifesto h2 { margin-bottom: 1.25rem; color: var(--ink); }
 
-.lighting-grid, .book-grid {
+.book-grid {
   display: grid;
   gap: 2rem;
 }
 @media (min-width: 800px) {
-  .lighting-grid, .book-grid { grid-template-columns: 1fr 1fr; align-items: start; }
+  .book-grid { grid-template-columns: 1fr 1fr; align-items: start; }
 }
 
 .review-card {
@@ -377,12 +377,10 @@ h2 + .section-lead, h2 + .accent { margin-top: 0.4rem; }
     radial-gradient(60% 80% at 100% 0%, rgba(225, 29, 46, 0.16), transparent 55%),
     var(--bg);
 }
-.lighting-grid h2 { margin-bottom: 0; }
-@media (min-width: 800px) { .lighting-grid { align-items: end; } .lighting-grid .bar-body { margin-bottom: 0.4rem; } }
 
 /* The gear, explained */
-.gear { margin-top: 3.5rem; }
-.gear-title { font-size: var(--display-sm); margin: 0 0 0.85rem; }
+.gear { margin-top: 0; }
+.gear-title { margin: 0 0 1rem; }
 .gear-intro { margin: 0 0 1.75rem; }
 .gear-also { color: var(--muted); margin: 1.5rem 0 0; }
 
@@ -793,7 +791,7 @@ code {
 @media (min-width: 800px) { .fx-panel { grid-template-columns: 2fr 3fr; } }
 .fx-photo { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; height: auto; }
 .fx-body { padding: 1.4rem 1.4rem 1.5rem; }
-.fx-body h4 { font-family: var(--display); font-weight: 400; font-size: 2rem; letter-spacing: var(--track-display); line-height: 1; margin: 0 0 1rem; }
+.fx-body h3 { font-family: var(--display); font-weight: 400; font-size: 2rem; letter-spacing: var(--track-display); line-height: 1; margin: 0 0 1rem; }
 .fx-facts { margin: 0; display: grid; gap: 0.85rem; }
 .fx-facts dt { font-size: var(--label); font-weight: 600; letter-spacing: var(--track-label); text-transform: uppercase; color: var(--red); margin: 0 0 0.15rem; }
 .fx-facts dd { margin: 0; color: #fff; line-height: 1.5; }

@@ -246,7 +246,7 @@ document.querySelectorAll('.yt-card').forEach(bindYt);
     if (lastBtn && lastBtn !== btn) lastBtn.setAttribute('aria-expanded', 'false');
     var copy = panel.cloneNode(true);
     copy.removeAttribute('id');
-    var h = copy.querySelector('h4');
+    var h = copy.querySelector('h3');
     if (h) h.id = 'fx-dialog-title';
     var img = copy.querySelector('img');
     if (img) img.loading = 'eager';
