@@ -1006,9 +1006,9 @@ code {
 
 /* Strip: one line saying what we are */
 .strip-what {
-  margin: 0 0 1.1rem; display: inline-block; padding: 0.15rem 0 0.15rem 0.7rem; border-left: 3px solid var(--red);
-  font-family: var(--sans); font-weight: 600; font-size: var(--label); letter-spacing: var(--track-label);
-  text-transform: uppercase; line-height: 1.4; color: #fff;
+  margin: 0 0 1.1rem; display: inline-block; border-left: 3px solid var(--red);
+  font-family: var(--display); font-weight: 400; font-size: clamp(1.6rem, 4vw, 2.6rem); letter-spacing: var(--track-display);
+  line-height: 1; color: #fff; text-wrap: balance; padding: 0.1rem 0 0.1rem 0.75rem;
   opacity: 0; animation: lineIn 0.8s var(--ease) 1.8s forwards;
 }
 @media (prefers-reduced-motion: reduce) { .hero-strip .strip-what { opacity: 1; animation: none; } }
