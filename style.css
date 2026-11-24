@@ -834,11 +834,6 @@ code {
 
 /* Vibe section: the pitch vs the honest disclaimer */
 .intro-manifesto h2 { margin-bottom: 0; }
-.vibe-split { margin: 1.75rem 0 2rem; }
-.vibe-yes { margin: 0; }
-.vibe-lead { display: block; font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 1.6rem; line-height: 1.1; color: rgba(255, 255, 255, 0.85); margin-bottom: 0.35rem; }
-.vibe-big { display: block; font-family: var(--display); font-size: clamp(2.4rem, 5vw, 4rem); line-height: 0.95; letter-spacing: var(--track-display); color: #fff; }
-.vibe-big em { font-style: normal; color: var(--red); }
 .intro-note { color: #fff; font-weight: 600; }
 
 /* Services heading accent */
@@ -846,7 +841,6 @@ code {
   display: inline-block; margin-left: 0.15em; padding: 0.06em 0.3em 0; background: #0a0a0a; color: #fff;
   font-size: 0.62em; letter-spacing: 0.12em; vertical-align: 0.32em; line-height: 1; transform: rotate(-3deg);
 }
-.vibe-big em { white-space: nowrap; }
 
 /* Recolour pass: footer red, vibe on red, services on black */
 .site-footer.is-red {
@@ -855,7 +849,6 @@ code {
     linear-gradient(180deg, var(--red-deep) 0%, var(--red-darker) 100%);
 }
 .is-red .socials a:hover, .is-red .legal a:hover { color: #0a0a0a; }
-.is-red .vibe-big em { color: #0a0a0a; }
 .is-red .yt-card:focus-visible { outline-color: #fff; }
 .is-red .shot figcaption span { color: #fff; }
 .svc-card { background: var(--card); border-top-color: var(--red); }
