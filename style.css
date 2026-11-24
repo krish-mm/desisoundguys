@@ -1018,4 +1018,13 @@ code {
 .fx-ph { gap: 0.5rem; align-content: center; }
 .fx-tag { font-family: var(--display); font-size: 1.35rem; letter-spacing: var(--track-display); line-height: 1; color: #fff; }
 .sign-off { color: var(--muted); }
+
+/* Decorative ticker between services and the call band */
+.ticker { background: var(--red); color: #0a0a0a; overflow: hidden; border-top: 2px solid #0a0a0a; border-bottom: 2px solid #0a0a0a; padding: 0.7rem 0; }
+.ticker-track { display: flex; width: max-content; animation: ticker 28s linear infinite; }
+.ticker-group { display: flex; flex-shrink: 0; }
+.ticker span { font-family: var(--display); font-size: clamp(1.5rem, 3vw, 2.2rem); line-height: 1; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; padding: 0 0.6em; }
+.ticker .tk-dot { padding: 0; color: #fff; }
+@keyframes ticker { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .ticker-track { animation: none; } }
 .book-title { text-wrap: balance; }
