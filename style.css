@@ -645,20 +645,20 @@ code {
 .tagline .tl:nth-child(3) { animation-delay: 0.9s; }
 .tagline .tl:nth-child(4) { animation-delay: 1.2s; }
 .hero-copy .iconic { opacity: 0; animation: iconicIn 0.9s var(--ease) 1.5s forwards, glow 3s ease-in-out 2.6s infinite; }
-.vibe .tl:nth-child(1) { animation-delay: 1.8s; }
-.vibe .tl:nth-child(2) { animation-delay: 2.1s; }
+.vibe .tl:nth-child(1) { animation-delay: 2.1s; }
+.vibe .tl:nth-child(2) { animation-delay: 2.4s; }
 .vibe .always { position: relative; display: inline-block; }
 .vibe .always::after {
   content: ""; position: absolute; left: 0; bottom: 0.05em; height: 2px; width: 100%;
   background: var(--red); transform: scaleX(0); transform-origin: left;
-  animation: underline 0.7s var(--ease) 2.7s forwards;
+  animation: underline 0.7s var(--ease) 3s forwards;
 }
 @keyframes lineIn { from { opacity: 0; transform: translateY(0.6em); filter: blur(6px); } to { opacity: 1; transform: none; filter: none; } }
 @keyframes iconicIn { 0% { opacity: 0; transform: scale(0.85); letter-spacing: 0.2em; } 100% { opacity: 1; transform: none; } }
 @keyframes glow { 0%, 100% { text-shadow: 0 0 0 transparent; } 50% { text-shadow: 0 0 18px rgba(225, 29, 46, 0.65); } }
 @keyframes underline { to { transform: scaleX(1); } }
 @media (prefers-reduced-motion: reduce) {
-  .hero-copy .tl, .hero-strip .tl, .hero-copy .iconic { opacity: 1; animation: none; }
+  .hero-copy .tl, .hero-strip .tl, .hero-copy .iconic, .hero-strip .strip-what { opacity: 1; animation: none; }
   .vibe .always::after { transform: scaleX(1); animation: none; }
 }
 
@@ -1003,3 +1003,12 @@ code {
   .guest-dialog-actions .btn { flex: 1 1 100%; justify-content: center; text-align: center; }
 }
 @media (prefers-reduced-motion: reduce) { .guest-dialog[open] { animation: none; } }
+
+/* Strip: one line saying what we are */
+.strip-what {
+  margin: 0 0 1.1rem; display: inline-block; padding: 0.15rem 0 0.15rem 0.7rem; border-left: 3px solid var(--red);
+  font-family: var(--sans); font-weight: 600; font-size: var(--label); letter-spacing: var(--track-label);
+  text-transform: uppercase; line-height: 1.4; color: #fff;
+  opacity: 0; animation: lineIn 0.8s var(--ease) 1.8s forwards;
+}
+@media (prefers-reduced-motion: reduce) { .hero-strip .strip-what { opacity: 1; animation: none; } }
