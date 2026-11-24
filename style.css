@@ -833,16 +833,11 @@ code {
 
 /* Vibe section: the pitch vs the honest disclaimer */
 .intro-manifesto h2 { margin-bottom: 0; }
-.vibe-split { display: grid; gap: 1.75rem; margin: 1.75rem 0 2rem; align-items: center; }
-@media (min-width: 800px) { .vibe-split { grid-template-columns: 1.5fr 1fr; gap: 3rem; } }
+.vibe-split { margin: 1.75rem 0 2rem; }
 .vibe-yes { margin: 0; }
 .vibe-lead { display: block; font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 1.6rem; line-height: 1.1; color: rgba(255, 255, 255, 0.85); margin-bottom: 0.35rem; }
 .vibe-big { display: block; font-family: var(--display); font-size: clamp(2.4rem, 5vw, 4rem); line-height: 0.95; letter-spacing: var(--track-display); color: #fff; }
 .vibe-big em { font-style: normal; color: var(--red); }
-.vibe-no { margin: 0; color: var(--muted); font-size: var(--body); line-height: 1.5; border-top: 2px solid var(--red); padding-top: 1.1rem; max-width: 24rem; }
-.vibe-no span { display: block; }
-.vibe-no .vibe-q { color: #fff; font-weight: 600; }
-@media (min-width: 800px) { .vibe-no { border-top: 0; border-left: 2px solid var(--red); padding: 0.3rem 0 0.3rem 1.5rem; } }
 .intro-note { color: #fff; font-weight: 600; }
 
 /* Services heading accent */
@@ -860,7 +855,6 @@ code {
 }
 .is-red .socials a:hover, .is-red .legal a:hover { color: #0a0a0a; }
 .is-red .vibe-big em { color: #0a0a0a; }
-.is-red .vibe-no { border-color: #fff; }
 .is-red .yt-card:focus-visible { outline-color: #fff; }
 .is-red .shot figcaption span { color: #fff; }
 .svc-card { background: var(--card); border-top-color: var(--red); }
