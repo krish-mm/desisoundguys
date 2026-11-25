@@ -1202,3 +1202,17 @@ code {
 a.yt-card { text-decoration: none; }
 .yt-kicker::after { content: " \2197"; }
 @media (max-width: 699px) { .yt-play { top: 40%; } }
+
+/* Hero cleanup (Krish t135u-t137u): no big wordmark (h1 kept for SEO/screen readers),
+   frame matches the 16:9 backdrop on desktop so almost nothing is cropped, 4:5 on phones, text sits low */
+.visually-hidden { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.hero { min-height: 0; height: clamp(480px, 56.25vw, 100svh); align-items: end; }
+.hero-copy { padding: 0 0 clamp(2.5rem, 5vw, 4.5rem); }
+.hero-copy .tagline { margin-top: 0; }
+.hero-overlay { background: linear-gradient(180deg, rgba(10, 10, 10, 0.35) 0%, rgba(10, 10, 10, 0.08) 22%, rgba(10, 10, 10, 0.14) 52%, rgba(10, 10, 10, 0.84) 100%); }
+@media (max-width: 799px) {
+  .hero { height: auto; aspect-ratio: 4 / 5; max-height: 92svh; }
+  .hero-copy { padding: 0 0 1.6rem; }
+  .hero-copy .tagline .tl { display: inline-block; margin-right: 0.3em; }
+  .hero-copy .tagline { max-width: 20rem; }
+}
