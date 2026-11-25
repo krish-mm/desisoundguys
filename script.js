@@ -268,22 +268,8 @@
 
 // YouTube: load the player only when a card is clicked
 function bindYt(card) {
+  if (card.tagName === 'A') return; // Videos section cards are plain links to youtube.com
   card.addEventListener('click', function () {
-    var ytd = document.getElementById('yt-dialog');
-    if (ytd && typeof ytd.showModal === 'function' && card.closest('.yt-grid')) {
-      var fr = ytd.querySelector('.yt-frame');
-      fr.innerHTML = '';
-      var mf = document.createElement('iframe');
-      mf.src = 'https://www.youtube-nocookie.com/embed/' + card.dataset.yt + '?autoplay=1&rel=0&modestbranding=1&playsinline=1';
-      mf.title = card.getAttribute('aria-label');
-      mf.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
-      mf.allowFullscreen = true;
-      fr.appendChild(mf);
-      ytd._from = card;
-      ytd.showModal();
-      ytd.querySelector('.yt-close').focus();
-      return;
-    }
     if (card.querySelector('iframe')) return;
     var f = document.createElement('iframe');
     f.src = 'https://www.youtube-nocookie.com/embed/' + card.dataset.yt + '?autoplay=1&rel=0';
@@ -455,15 +441,6 @@ document.querySelectorAll(".svc-grid, .fx-grid, .steps, .review-grid, .reviews-g
   update();
 })();
 
-// Video lightbox: close stops playback and returns focus to the card
-(function () {
-  var d = document.getElementById('yt-dialog');
-  if (!d) return;
-  function shut() { if (d.open) d.close(); }
-  d.addEventListener('close', function () { d.querySelector('.yt-frame').innerHTML = ''; if (d._from) d._from.focus(); });
-  d.querySelector('.yt-close').addEventListener('click', shut);
-  d.addEventListener('click', function (e) { if (e.target === d) shut(); });
-})();
 
 // YT 4: silent in-view preview loops. A card plays its clip only if it has
 // data-preview="media/videos/<clip>.mp4" (his own footage from that event).
