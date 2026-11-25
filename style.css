@@ -413,7 +413,8 @@ h2 + .section-lead, h2 + .accent { margin-top: 0.4rem; }
 .review-card p { color: var(--ink); }
 .stars { color: var(--red); margin-bottom: 0.6rem; letter-spacing: 0.12em; }
 .review-card footer { color: var(--muted); }
-.reviews-cta { margin: 2.5rem 0 0; }
+.reviews-cta { margin: 2.5rem 0 0; display: flex; flex-direction: column; align-items: flex-start; gap: 0.9rem; }
+.reviews-w { font-family: var(--display); letter-spacing: var(--track-display); font-size: clamp(1.35rem, 2.2vw, 1.85rem); line-height: 1.05; }
 
 .for-djs-inner { display: grid; gap: 1.5rem; }
 .for-djs-inner h2 { margin-bottom: 0; }
