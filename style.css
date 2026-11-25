@@ -1201,3 +1201,6 @@ code {
 }
 @media (prefers-reduced-motion: reduce) { .yt-arrow, .yt-dot::before { transition: none; } }
 @media (max-width: 699px) { .yt-filters { gap: 0.4rem; } .yt-chip { padding: 0.4rem 0.7rem; font-size: 0.7rem; letter-spacing: 0.04em; } }
+
+/* Services: small in-view loops on cards that have real footage (same spec as Effects tiles) */
+.svc-clip { display: block; width: calc(100% + 2.8rem); max-width: none; aspect-ratio: 16 / 9; margin: -1.6rem -1.4rem 1.25rem; object-fit: cover; background: #111; }
