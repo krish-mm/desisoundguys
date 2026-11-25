@@ -261,7 +261,7 @@ h3 { font-size: var(--display-sm); }
   z-index: 1;
   margin: 0;
 }
-.hero.has-video .hero-ph { display: none; }
+.hero.has-video .hero-ph, .hero.has-poster .hero-ph { display: none; }
 .beam {
   position: absolute;
   top: -10%;

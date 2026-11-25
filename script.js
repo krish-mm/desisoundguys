@@ -160,37 +160,22 @@
   }
 
 
-  // Hero backdrop: hero.mp4 (hero-mobile.mp4 on small screens if present)
+  // Hero backdrop: Ashna + Tony highlight loop (hero-mobile.mp4 on small screens). Poster only for reduced motion.
   const heroEl = document.querySelector(".hero");
   const heroVideo = heroEl && heroEl.querySelector(".hero-video");
   if (heroEl && heroVideo) {
-    (async () => {
-      const poster = await firstExisting([
-        "media/videos/hero.webp",
-        "media/videos/hero.jpg",
-        "media/videos/hero.jpeg"
-      ]);
-      if (poster) {
-        heroVideo.setAttribute("poster", poster);
-        heroEl.style.setProperty("--hero-poster", "url(\"" + poster + "\")");
-        heroEl.classList.add("has-poster");
-        heroEl.querySelector(".hero-stage").style.backgroundImage = "url(\"" + poster + "\")";
-      }
-      if (reduceMotion) return;
+    const poster = "media/videos/hero.jpg";
+    heroVideo.setAttribute("poster", poster);
+    heroEl.classList.add("has-poster");
+    heroEl.querySelector(".hero-stage").style.backgroundImage = "url(\"" + poster + "\")";
+    if (!reduceMotion) {
       const mobile = window.matchMedia("(max-width: 799px)").matches;
-      const src = await firstExisting(
-        mobile
-          ? ["media/videos/hero-mobile.mp4", "media/videos/hero.mp4"]
-          : ["media/videos/hero.mp4"]
-      );
-      if (!src) return;
-      heroVideo.setAttribute("src", src);
+      heroVideo.setAttribute("src", mobile ? "media/videos/hero-mobile.mp4" : "media/videos/hero.mp4");
       heroVideo.preload = "auto";
-      heroVideo.load();
       heroEl.classList.add("has-video");
       const play = heroVideo.play();
       if (play && play.catch) play.catch(function () {});
-    })();
+    }
   }
 
   // Effect tile clips: loaded and played only when visible and motion is OK; poster otherwise
