@@ -160,7 +160,9 @@
   }
 
 
-  // Hero backdrop: Ashna + Tony highlight loop (hero-mobile.mp4 on small screens). Poster only for reduced motion.
+  // Hero backdrop: Ashna + Tony highlight loop (hero-mobile.mp4 on small screens), poster underneath.
+  // Plays even with Reduce Motion on (it's the main visual, muted, no flashing), and retries on the
+  // first tap/click when the browser blocks autoplay (iOS Low Power Mode, data saver).
   const heroEl = document.querySelector(".hero");
   const heroVideo = heroEl && heroEl.querySelector(".hero-video");
   if (heroEl && heroVideo) {
@@ -168,14 +170,24 @@
     heroVideo.setAttribute("poster", poster);
     heroEl.classList.add("has-poster");
     heroEl.querySelector(".hero-stage").style.backgroundImage = "url(\"" + poster + "\")";
-    if (!reduceMotion) {
-      const mobile = window.matchMedia("(max-width: 799px)").matches;
-      heroVideo.setAttribute("src", mobile ? "media/videos/hero-mobile.mp4" : "media/videos/hero.mp4");
-      heroVideo.preload = "auto";
-      heroEl.classList.add("has-video");
+    const mobile = window.matchMedia("(max-width: 799px)").matches;
+    heroVideo.muted = true;
+    heroVideo.defaultMuted = true;
+    heroVideo.setAttribute("autoplay", "");
+    heroVideo.setAttribute("src", mobile ? "media/videos/hero-mobile.mp4" : "media/videos/hero.mp4");
+    heroVideo.preload = "auto";
+    heroEl.classList.add("has-video");
+    const playHero = function () {
+      if (!heroVideo.paused) return;
       const play = heroVideo.play();
       if (play && play.catch) play.catch(function () {});
-    }
+    };
+    playHero();
+    heroVideo.addEventListener("canplay", playHero, { once: true });
+    ["touchend", "click", "keydown"].forEach(function (ev) {
+      document.addEventListener(ev, playHero, { once: true, passive: true });
+    });
+    document.addEventListener("visibilitychange", function () { if (!document.hidden) playHero(); });
   }
 
   // Effect tile clips: loaded and played only when visible and motion is OK; poster otherwise
